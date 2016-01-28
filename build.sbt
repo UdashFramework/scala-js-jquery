@@ -15,11 +15,18 @@ scalacOptions in ThisBuild ++= Seq(
   "-Xlint:_,-missing-interpolator,-adapted-args"
 )
 
-libraryDependencies +=
-  "org.scala-js" %%% "scalajs-dom" % "0.8.2"
+libraryDependencies ++= Seq(
+  "org.scala-js" %%% "scalajs-dom" % "0.8.2",
+  "org.scalatest" %%% "scalatest" % "3.0.0-M15" % Test,
+  "com.lihaoyi" %%% "scalatags" % "0.5.4" % Test
+)
 
 jsDependencies +=
   "org.webjars" % "jquery" % "2.2.0" / "2.2.0/jquery.js" minified "2.2.0/jquery.min.js"
+
+requiresDOM in Test := true
+persistLauncher in Test := false
+scalaJSUseRhino in Test := false
 
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
