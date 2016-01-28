@@ -1,5 +1,7 @@
 # scala-js-jquery [![Build Status](https://travis-ci.org/UdashFramework/scala-js-jquery.svg?branch=master)](https://travis-ci.org/UdashFramework/scala-js-jquery) [<img align="right" height="50px" src="http://www.avsystem.com/avsystem_logo.png">](http://www.avsystem.com/)
 
+[![Join the chat at https://gitter.im/UdashFramework/scala-js-jquery](https://badges.gitter.im/UdashFramework/scala-js-jquery.svg)](https://gitter.im/UdashFramework/scala-js-jquery?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) programs. 
 
 ## Example
