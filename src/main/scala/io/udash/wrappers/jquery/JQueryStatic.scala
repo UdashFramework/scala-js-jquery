@@ -188,7 +188,7 @@ object JQueryStatic {
 
     /** Return a collection of matched elements either found in the DOM based on passed argument(s) or created by passing an HTML string. <br/>
       * See: <a href="http://api.jquery.com/jQuery/">jQuery Docs</a> */
-    def apply(elementArray: Seq[Element]): JQuery = jQueryStatic(elementArray.toJSArray)
+    def apply(elementArray: Element*): JQuery = jQueryStatic(elementArray.toJSArray)
 
     /** Binds a function to be executed when the DOM has finished loading. <br/>
       * See: <a href="http://api.jquery.com/jQuery/#jQuery-callback">jQuery Docs</a> */
@@ -196,8 +196,8 @@ object JQueryStatic {
 
     /** Binds a function to be executed when the DOM has finished loading. <br/>
       * See: <a href="http://api.jquery.com/jQuery/#jQuery-callback">jQuery Docs</a> */
-    def apply(option: Option[Any]): JQuery = option match {
-      case Some(element) => jQueryStatic.apply(element.asInstanceOf[js.Any])
+    def apply(option: Option[js.Any]): JQuery = option match {
+      case Some(element) => jQueryStatic.apply(element)
       case None => jQueryStatic.apply()
     }
 
