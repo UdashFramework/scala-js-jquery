@@ -1,6 +1,6 @@
 name := "udash-jquery"
 
-version := "0.2.0"
+version := "1.0.0-SNAPSHOT"
 organization := "io.udash"
 scalaVersion := "2.11.7"
 scalacOptions in ThisBuild ++= Seq(

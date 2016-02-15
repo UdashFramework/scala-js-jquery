@@ -2,6 +2,20 @@
 
 Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) programs. 
 
+## Usage
+
+Add the following to your SBT build:
+
+```scala
+libraryDependencies += "io.udash" %%% "udash-jquery" % "0.2.0"
+```
+
+then import jQuery package: 
+
+```scala
+import io.udash.wrappers.jquery._
+```
+
 ## Example
 
 ```scala
