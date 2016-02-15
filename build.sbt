@@ -16,7 +16,7 @@ scalacOptions in ThisBuild ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.8.2",
+  "org.scala-js" %%% "scalajs-dom" % "0.9.0",
   "org.scalatest" %%% "scalatest" % "3.0.0-M15" % Test,
   "com.lihaoyi" %%% "scalatags" % "0.5.4" % Test
 )
