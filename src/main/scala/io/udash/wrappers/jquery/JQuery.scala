@@ -54,7 +54,7 @@ trait JQuery extends js.Object {
 
   /** Perform a custom animation of a set of CSS properties. <br/>
     * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
-  private[jquery] def animate(properties: js.Dictionary[Any], duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def animate(properties: js.Dictionary[Any], duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Perform a custom animation of a set of CSS properties. <br/>
     * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
@@ -218,11 +218,11 @@ trait JQuery extends js.Object {
 
   /** Display the matched elements by fading them to opaque. <br/>
     * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
-  def fadeIn(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def fadeIn(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display the matched elements by fading them to opaque. <br/>
     * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
-  private[jquery] def fadeIn(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def fadeIn(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display the matched elements by fading them to opaque. <br/>
     * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
@@ -230,11 +230,11 @@ trait JQuery extends js.Object {
 
   /** Hide the matched elements by fading them to transparent. <br/>
     * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
-  def fadeOut(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def fadeOut(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Hide the matched elements by fading them to transparent. <br/>
     * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
-  private[jquery] def fadeOut(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def fadeOut(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Hide the matched elements by fading them to transparent. <br/>
     * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
@@ -250,7 +250,7 @@ trait JQuery extends js.Object {
 
   /** Adjust the opacity of the matched elements. <br/>
     * See: <a href="http://api.jquery.com/fadeTo/">jQuery Docs</a> */
-  def fadeTo(duration: Int, opacity: Double, easing: String): JQuery = js.native
+  def fadeTo(duration: Int, opacity: Double, easing: EasingFunction): JQuery = js.native
 
   /** Adjust the opacity of the matched elements. <br/>
     * See: <a href="http://api.jquery.com/fadeTo/">jQuery Docs</a> */
@@ -258,11 +258,11 @@ trait JQuery extends js.Object {
 
   /** Display or hide the matched elements by animating their opacity. <br/>
     * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
-  def fadeToggle(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def fadeToggle(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display or hide the matched elements by animating their opacity. <br/>
     * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
-  private[jquery] def fadeToggle(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def fadeToggle(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display or hide the matched elements by animating their opacity. <br/>
     * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
@@ -336,11 +336,11 @@ trait JQuery extends js.Object {
 
   /** Hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
-  def hide(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def hide(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
-  private[jquery] def hide(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def hide(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
@@ -729,11 +729,11 @@ trait JQuery extends js.Object {
 
   /** Display the matched elements. <br/>
     * See: <a href="http://api.jquery.com/show/">jQuery Docs</a> */
-  def show(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def show(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display the matched elements. <br/>
     * See: <a href="http://api.jquery.com/show/">jQuery Docs</a> */
-  private[jquery] def show(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def show(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display the matched elements. <br/>
     * See: <a href="http://api.jquery.com/show/">jQuery Docs</a> */
@@ -749,11 +749,11 @@ trait JQuery extends js.Object {
 
   /** Display the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
-  def slideDown(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def slideDown(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
-  private[jquery] def slideDown(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def slideDown(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
@@ -761,11 +761,11 @@ trait JQuery extends js.Object {
 
   /** Display or hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
-  def slideToggle(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def slideToggle(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display or hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
-  private[jquery] def slideToggle(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def slideToggle(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display or hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
@@ -773,11 +773,11 @@ trait JQuery extends js.Object {
 
   /** Hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
-  def slideUp(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def slideUp(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
-  private[jquery] def slideUp(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def slideUp(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Hide the matched elements with a sliding motion. <br/>
     * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
@@ -813,11 +813,11 @@ trait JQuery extends js.Object {
 
   /** Display or hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
-  def toggle(duration: Int = js.native, easing: String = js.native): JQuery = js.native
+  def toggle(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
 
   /** Display or hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
-  private[jquery] def toggle(duration: Int, easing: String, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
+  private[jquery] def toggle(duration: Int, easing: EasingFunction, callback: js.ThisFunction0[Element, Any]): JQuery = js.native
 
   /** Display or hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
@@ -919,28 +919,6 @@ object JQuery {
 
   private val registrations: mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]] = mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]]()
 
-  case class AnimationOptions(duration: Option[Int] = None, easing: String = null, queue: Option[Boolean] = None,
-                              step: (Int, js.Dynamic) => Any = null, progress: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Int, Int) => js.Any = null,
-                              complete: () => js.Any = null, start: JQueryPromise[js.Function1[js.Any, js.Any], js.Any] => js.Any = null,
-                              done: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => js.Any = null,
-                              fail: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => js.Any = null,
-                              always: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => js.Any = null) {
-    def toJSDictionary: js.Dictionary[Any] = {
-      val r = js.Dictionary[Any]()
-      if (duration.isDefined) r.update("duration", duration.get)
-      if (easing != null) r.update("easing", easing)
-      if (queue.isDefined) r.update("queue", queue.get)
-      if (step != null) r.update("step", step)
-      if (progress != null) r.update("progress", progress)
-      if (complete != null) r.update("complete", complete)
-      if (start != null) r.update("start", start)
-      if (done != null) r.update("done", done)
-      if (fail != null) r.update("fail", fail)
-      if (always != null) r.update("always", always)
-      r
-    }
-  }
-
   implicit class JQueryWrapper(private val jquery: JQuery) {
     import js.JSConverters._
 
@@ -964,7 +942,7 @@ object JQuery {
 
     /** Perform a custom animation of a set of CSS properties. <br/>
       * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
-    def animate(properties: Map[String, Any], duration: Int = 400, easing: String = "swing", callback: (Element) => Any = (_) => {}): JQuery = jquery.animate(properties.toJSDictionary, duration, easing, callback)
+    def animate(properties: Map[String, Any], duration: Int = 400, easing: EasingFunction = EasingFunction.swing, callback: (Element) => Any = (_) => {}): JQuery = jquery.animate(properties.toJSDictionary, duration, easing, callback)
 
     /** Perform a custom animation of a set of CSS properties. <br/>
       * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
@@ -1070,7 +1048,7 @@ object JQuery {
 
     /** Display the matched elements by fading them to opaque. <br/>
       * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
-    def fadeIn(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.fadeIn(duration, easing, callback)
+    def fadeIn(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.fadeIn(duration, easing, callback)
 
     /** Display the matched elements by fading them to opaque. <br/>
       * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
@@ -1078,7 +1056,7 @@ object JQuery {
 
     /** Hide the matched elements by fading them to transparent. <br/>
       * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
-    def fadeOut(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.fadeOut(duration, easing, callback)
+    def fadeOut(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.fadeOut(duration, easing, callback)
 
     /** Hide the matched elements by fading them to transparent. <br/>
       * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
@@ -1090,11 +1068,11 @@ object JQuery {
 
     /** Adjust the opacity of the matched elements. <br/>
       * See: <a href="http://api.jquery.com/fadeTo/">jQuery Docs</a> */
-    def fadeTo(duration: Int, opacity: Double, easing: String, callback: (Element) => Any): JQuery = jquery.fadeTo(duration, opacity, easing, callback)
+    def fadeTo(duration: Int, opacity: Double, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.fadeTo(duration, opacity, easing, callback)
 
     /** Display or hide the matched elements by animating their opacity. <br/>
       * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
-    def fadeToggle(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.fadeToggle(duration, easing, callback)
+    def fadeToggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.fadeToggle(duration, easing, callback)
 
     /** Display or hide the matched elements by animating their opacity. <br/>
       * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
@@ -1142,7 +1120,7 @@ object JQuery {
 
     /** Hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
-    def hide(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.hide(duration, easing, callback)
+    def hide(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.hide(duration, easing, callback)
 
     /** Hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
@@ -1451,7 +1429,7 @@ object JQuery {
 
     /** Display the matched elements. <br/>
       * See: <a href="http://api.jquery.com/show/">jQuery Docs</a> */
-    def show(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.show(duration, easing, callback)
+    def show(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.show(duration, easing, callback)
 
     /** Display the matched elements. <br/>
       * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
@@ -1459,7 +1437,7 @@ object JQuery {
 
     /** Display the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
-    def slideDown(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.slideDown(duration, easing, callback)
+    def slideDown(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.slideDown(duration, easing, callback)
 
     /** Display the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
@@ -1467,7 +1445,7 @@ object JQuery {
 
     /** Display or hide the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
-    def slideToggle(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.slideToggle(duration, easing, callback)
+    def slideToggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.slideToggle(duration, easing, callback)
 
     /** Display or hide the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
@@ -1475,7 +1453,7 @@ object JQuery {
 
     /** Hide the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
-    def slideUp(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.slideUp(duration, easing, callback)
+    def slideUp(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.slideUp(duration, easing, callback)
 
     /** Hide the matched elements with a sliding motion. <br/>
       * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
@@ -1499,7 +1477,7 @@ object JQuery {
 
     /** Display or hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
-    def toggle(duration: Int, easing: String, callback: (Element) => Any): JQuery = jquery.toggle(duration, easing, callback)
+    def toggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery = jquery.toggle(duration, easing, callback)
 
     /** Display or hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
