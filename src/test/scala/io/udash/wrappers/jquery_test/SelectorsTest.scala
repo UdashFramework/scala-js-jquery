@@ -13,9 +13,9 @@ class SelectorsTest extends WordSpec with Matchers {
       val el3 = h1(cls := "c3").render
       val dom = div(el1, el2, el3).render
 
-      jQ(dom).children(".c1").each((el, _, _) => jQ(el).attr("a1", 1))
-      jQ(dom).children(".c2").each((el, _, _) => jQ(el).attr("a2", 1))
-      jQ(dom).children(".c3").each((el, _, _) => jQ(el).attr("a3", 1))
+      jQ(dom).children(".c1").each((el, _) => jQ(el).attr("a1", 1))
+      jQ(dom).children(".c2").each((el, _) => jQ(el).attr("a2", 1))
+      jQ(dom).children(".c3").each((el, _) => jQ(el).attr("a3", 1))
 
       jQ(el1).attr("a1") should be(Some("1"))
       jQ(el1).attr("a2") should be(None)
@@ -36,9 +36,9 @@ class SelectorsTest extends WordSpec with Matchers {
       val el3 = h1(id := "el3").render
       val dom = div(el1, el2, el3).render
 
-      jQ(dom).children("#el1").each((el, _, _) => jQ(el).attr("a1", 1))
-      jQ(dom).children("#el2").each((el, _, _) => jQ(el).attr("a2", 1))
-      jQ(dom).children("#el3").each((el, _, _) => jQ(el).attr("a3", 1))
+      jQ(dom).children("#el1").each((el, _) => jQ(el).attr("a1", 1))
+      jQ(dom).children("#el2").each((el, _) => jQ(el).attr("a2", 1))
+      jQ(dom).children("#el3").each((el, _) => jQ(el).attr("a3", 1))
 
       jQ(el1).attr("a1") should be(Some("1"))
       jQ(el1).attr("a2") should be(None)

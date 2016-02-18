@@ -1,8 +1,18 @@
 package io.udash.wrappers.jquery
 
 import scala.scalajs.js
+import scala.scalajs.js.|
 
-case class AnimationOptions(duration: Option[Int] = None, easing: Option[EasingFunction], queue: Option[Boolean] = None,
+sealed trait TopLeftCoords {
+  def top: Double
+  def left: Double
+  def toJSDictionary: js.Dictionary[Int | Double] =
+    js.Dictionary[Int | Double]("top" -> top, "left" -> left)
+}
+case class Position(override val top: Double, override val left: Double) extends TopLeftCoords
+case class Offset(override val top: Double, override val left: Double) extends TopLeftCoords
+
+case class AnimationOptions(duration: Option[Int] = None, easing: Option[EasingFunction] = None, queue: Option[Boolean] = None,
                             step: (Int, js.Dynamic) => Any = null, progress: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Int, Int) => Any = null,
                             complete: () => Any = null, start: JQueryPromise[js.Function1[js.Any, js.Any], js.Any] => Any = null,
                             done: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null,
