@@ -7,16 +7,27 @@ Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) program
 Add the following to your SBT build:
 
 ```scala
-libraryDependencies += "io.udash" %%% "udash-jquery" % "0.2.0"
+libraryDependencies += "io.udash" %%% "udash-jquery" % "1.0.0-rc.1"
 ```
 
-then import jQuery package: 
+then import the jQuery package: 
 
 ```scala
 import io.udash.wrappers.jquery._
 ```
 
-## Example
+## Examples
+
+```scala
+import io.udash.wrappers.jquery._
+
+jQ("#elementId")
+  .hide(AnimationOptions(
+    duration = Some(3000),
+    easing = Some(EasingFunction.linear)
+  ))
+  .show(1500, EasingFunction.swing)
+```
 
 ```scala
 import io.udash.wrappers.jquery._
@@ -28,4 +39,33 @@ element.attr("example-attr") match {
   case Some(value) => println(s"Attribute value: $value")
   case None => println("Attribute not found!")
 }
+```
+
+```scala
+import io.udash.wrappers.jquery._
+
+val callbacks = jQ.callbacks[js.Function1[(Int, Int), js.Any], (Int, Int)]()
+callbacks.add((t: (Int, Int)) => {
+  val (a, b) = t
+  jQ("#plus").append(li(s"$a + $b = ${a+b}").render)
+})
+callbacks.add((t: (Int, Int)) => {
+  val (a, b) = t
+  jQ("#minus").append(li(s"$a - $b = ${a-b}").render)
+})
+callbacks.add((t: (Int, Int)) => {
+  val (a, b) = t
+  jQ("#mul").append(li(s"$a * $b = ${a*b}").render)
+})
+callbacks.add((t: (Int, Int)) => {
+  val (a, b) = t
+  jQ("#div").append(li(s"$a / $b = ${a/b}").render)
+})
+
+callbacks.fire(1, 1)
+callbacks.fire(3, 3)
+callbacks.fire(7, 4)
+
+callbacks.disable()
+callbacks.fire(1, 2)
 ```
