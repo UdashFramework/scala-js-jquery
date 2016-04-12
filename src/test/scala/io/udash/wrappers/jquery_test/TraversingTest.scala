@@ -14,11 +14,11 @@ class TraversingTest extends WordSpec with Matchers {
       val el3 = h1.render
 
       val j1 = jQ(el1)
-      j1.each((el, _, _) => jQ(el).attr("a1", 1))
+      j1.each((el, _) => jQ(el).attr("a1", 1))
       val j2 = j1.add(el2)
-      j2.each((el, _, _) => jQ(el).attr("a2", 1))
+      j2.each((el, _) => jQ(el).attr("a2", 1))
       val j3 = j2.add(el3)
-      j3.each((el, _, _) => jQ(el).attr("a3", 1))
+      j3.each((el, _) => jQ(el).attr("a3", 1))
 
       jQ(el1).attr("a1") should be(Some("1"))
       jQ(el1).attr("a2") should be(Some("1"))
@@ -39,7 +39,7 @@ class TraversingTest extends WordSpec with Matchers {
       val el3 = h1.render
 
       val selection = jQ(el1, el2, el3)
-      selection.each((el, _, _) => jQ(el).attr("a", 1))
+      selection.each((el, _) => jQ(el).attr("a", 1))
 
       jQ(el1).attr("a") should be(Some("1"))
       jQ(el2).attr("a") should be(Some("1"))
@@ -52,7 +52,7 @@ class TraversingTest extends WordSpec with Matchers {
       val el3 = h1.render
 
       val selection = jQ(el1, el2, el3)
-      selection.filter("h1").each((el, _, _) => jQ(el).attr("a", 1))
+      selection.filter("h1").each((el, _) => jQ(el).attr("a", 1))
 
       jQ(el1).attr("a") should be(None)
       jQ(el2).attr("a") should be(None)

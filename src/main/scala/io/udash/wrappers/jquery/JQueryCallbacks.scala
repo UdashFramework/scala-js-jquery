@@ -16,6 +16,10 @@ trait JQueryCallbacks[FunType <: js.Function1[ArgType, js.Any], ArgType] extends
     * See: <a href="http://api.jquery.com/callbacks.disabled/">jQuery Docs</a> */
   def disabled: Boolean = js.native
 
+  /** Remove all of the callbacks from a list. <br/>
+    * See: <a href="http://api.jquery.com/callbacks.empty/">jQuery Docs</a> */
+  def empty(): JQueryCallbacks[FunType, ArgType] = js.native
+
   /** Call all of the callbacks with the given arguments. <br/>
     * See: <a href="http://api.jquery.com/callbacks.fire/">jQuery Docs</a> */
   def fire(args: ArgType): JQueryCallbacks[FunType, ArgType] = js.native

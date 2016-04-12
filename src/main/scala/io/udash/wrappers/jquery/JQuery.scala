@@ -72,21 +72,21 @@ trait JQuery extends js.Object {
     * See: <a href="http://api.jquery.com/appendTo/">jQuery Docs</a> */
   def appendTo(target: (Selector | Element | JQuery)*): JQuery = js.native
 
+  /** Set one or more attributes for the set of matched elements. <br/>
+    * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
+  def attr(attributeName: String, attributeValue: String | Int | Double | Boolean): JQuery = js.native
+
   /** Get the value of an attribute for the first element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/attr/#attr-attributeName">jQuery Docs</a> */
   private[jquery] def attr(attributeName: String): UndefOr[String] = js.native
 
   /** Set one or more attributes for the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-  private[jquery] def attr(attributes: js.Dictionary[String | Double]): JQuery = js.native
+  private[jquery] def attr(attributes: js.Dictionary[String | Int | Double | Boolean]): JQuery = js.native
 
   /** Set one or more attributes for the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-  private[jquery] def attr(attributeName: String, attributeValue: String | Double): JQuery = js.native
-
-  /** Set one or more attributes for the set of matched elements. <br/>
-    * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-  private[jquery] def attr(attributeName: String, function: js.Function2[Int, String, String | Double]): JQuery = js.native
+  private[jquery] def attr(attributeName: String, function: js.Function2[Int, String, String | Int | Double | Boolean]): JQuery = js.native
 
   /** Insert content, specified by the parameter, before each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/before/">jQuery Docs</a> */
@@ -147,19 +147,19 @@ trait JQuery extends js.Object {
 
   /** Get the computed style properties for the first element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/css/#css-propertyName">jQuery Docs</a> */
-  def css(propertyNames: String*): JQuery = js.native
+  def css(propertyName: String): String = js.native
 
   /** Set one or more CSS properties for the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-  private[jquery] def css(attributeName: String, attributeValue: String | Int): JQuery = js.native
+  def css(attributeName: String, attributeValue: String | Int | Double | Boolean): JQuery = js.native
 
   /** Set one or more CSS properties for the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-  private[jquery] def css(attributeName: String, attributeFun: js.Function2[Int, String, String | Int]): JQuery = js.native
+  private[jquery] def css(attributeName: String, attributeFun: js.Function2[Int, String, String | Int | Double | Boolean]): JQuery = js.native
 
   /** Set one or more CSS properties for the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-  private[jquery] def css(properties: js.Dictionary[String | Int]): JQuery = js.native
+  private[jquery] def css(properties: js.Dictionary[String | Int | Double | Boolean]): JQuery = js.native
 
   /** Store arbitrary data associated with the matched elements. <br/>
     * See: <a href="http://api.jquery.com/data/#data-key-value">jQuery Docs</a> */
@@ -196,7 +196,7 @@ trait JQuery extends js.Object {
 
   /** Iterate over a jQuery object, executing a function for each matched element. <br/>
     * See: <a href="http://api.jquery.com/each/">jQuery Docs</a> */
-  private[jquery] def each(function: js.ThisFunction2[Element, Int, Element, Any]): JQuery = js.native
+  private[jquery] def each(function: js.ThisFunction1[Element, Int, Any]): JQuery = js.native
 
   /** Remove all child nodes of the set of matched elements from the DOM. <br/>
     * See: <a href="http://api.jquery.com/empty/">jQuery Docs</a> */
@@ -328,11 +328,11 @@ trait JQuery extends js.Object {
 
   /** Set the CSS height of every matched element. <br/>
     * See: <a href="http://api.jquery.com/height/#height-value">jQuery Docs</a> */
-  def height(value: String | Double): JQuery = js.native
+  def height(value: String | Int | Double): JQuery = js.native
 
   /** Set the CSS height of every matched element. <br/>
     * See: <a href="http://api.jquery.com/height/#height-value">jQuery Docs</a> */
-  private[jquery] def height(function: js.ThisFunction2[Element, Int, Int, String | Double]): JQuery = js.native
+  private[jquery] def height(function: js.ThisFunction2[Element, Int, Int, String | Int | Double]): JQuery = js.native
 
   /** Hide the matched elements. <br/>
     * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
@@ -372,7 +372,7 @@ trait JQuery extends js.Object {
 
   /** Set the CSS inner height of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/innerHeight/#innerHeight-value">jQuery Docs</a> */
-  private[jquery] def innerHeight(function: js.ThisFunction2[Element, Int, Double, Double | String]): JQuery = js.native
+  private[jquery] def innerHeight(function: js.ThisFunction2[Element, Int, Double, Int | Double | String]): JQuery = js.native
 
   /** Get the current computed inner width for the first element in the set of matched elements, including padding but not border. <br/>
     * See: <a href="http://api.jquery.com/innerWidth/">jQuery Docs</a> */
@@ -380,11 +380,11 @@ trait JQuery extends js.Object {
 
   /** Set the CSS inner width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/innerWidth/#innerWidth-value">jQuery Docs</a> */
-  def innerWidth(value: Double | String): JQuery = js.native
+  def innerWidth(value: Int | Double | String): JQuery = js.native
 
   /** Set the CSS inner width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/innerWidth/#innerWidth-value">jQuery Docs</a> */
-  private[jquery] def innerWidth(function: js.ThisFunction2[Element, Int, Double, Double | String]): JQuery = js.native
+  private[jquery] def innerWidth(function: js.ThisFunction2[Element, Int, Double, Int | Double | String]): JQuery = js.native
 
   /** Insert every element in the set of matched elements after the target. <br/>
     * See: <a href="http://api.jquery.com/insertAfter/">jQuery Docs</a> */
@@ -521,7 +521,7 @@ trait JQuery extends js.Object {
 
   /** Get the current coordinates of the first element in the set of matched elements, relative to the document. <br/>
     * See: <a href="http://api.jquery.com/offset/">jQuery Docs</a> */
-  private[jquery] def offset(coordinates: js.Dictionary[Double]): JQuery = js.native
+  private[jquery] def offset(coordinates: js.Dictionary[Int | Double]): JQuery = js.native
 
   /** Get the closest ancestor element that is positioned. <br/>
     * See: <a href="http://api.jquery.com/offsetParent/">jQuery Docs</a> */
@@ -565,7 +565,7 @@ trait JQuery extends js.Object {
 
   /** Set the CSS outer Height of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
-  def outerHeight(value: Double | String): JQuery = js.native
+  def outerHeight(value: Int | Double | String): JQuery = js.native
 
   /** Set the CSS outer Height of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
@@ -577,7 +577,7 @@ trait JQuery extends js.Object {
 
   /** Set the CSS outer width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
-  def outerWidth(value: Double | String): JQuery = js.native
+  def outerWidth(value: Int | Double | String): JQuery = js.native
 
   /** Set the CSS outer width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
@@ -858,12 +858,12 @@ trait JQuery extends js.Object {
   /** Get the current value of the first element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/val/">jQuery Docs</a> */
   @JSName("val")
-  def value(): String | Number | js.Array[Any] = js.native
+  def value(): String | Int | Double | js.Array[Any] = js.native
 
   /** Set the value of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/val/">jQuery Docs</a> */
   @JSName("val")
-  def value(value: String | Number | js.Array[Any]): JQuery = js.native
+  def value(value: String | Int | Double | js.Array[Any]): JQuery = js.native
 
   /** Set the value of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/val/">jQuery Docs</a> */
@@ -876,11 +876,11 @@ trait JQuery extends js.Object {
 
   /** Set the CSS width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/width/#width-value">jQuery Docs</a> */
-  def width(value: String | Double): JQuery = js.native
+  def width(value: String | Int | Double): JQuery = js.native
 
   /** Set the CSS width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/width/#width-value">jQuery Docs</a> */
-  private[jquery] def width(function: js.ThisFunction2[Element, Int, Int, String | Double]): JQuery = js.native
+  private[jquery] def width(function: js.ThisFunction2[Element, Int, Int, String | Int | Double]): JQuery = js.native
 
   /** Wrap an HTML structure around each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/wrap/">jQuery Docs</a> */
@@ -942,7 +942,8 @@ object JQuery {
 
     /** Perform a custom animation of a set of CSS properties. <br/>
       * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
-    def animate(properties: Map[String, Any], duration: Int = 400, easing: EasingFunction = EasingFunction.swing, callback: (Element) => Any = (_) => {}): JQuery = jquery.animate(properties.toJSDictionary, duration, easing, callback)
+    def animate(properties: Map[String, Any], duration: Int = 400, easing: EasingFunction = EasingFunction.swing, callback: (Element) => Any = (_) => {}): JQuery =
+      jquery.animate(properties.toJSDictionary, duration, easing, callback)
 
     /** Perform a custom animation of a set of CSS properties. <br/>
       * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
@@ -958,15 +959,11 @@ object JQuery {
 
     /** Set one or more attributes for the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-    def attr(attributes: Map[String, String | Double]): JQuery = jquery.attr(attributes.toJSDictionary)
+    def attr(attributes: Map[String, String | Int | Double | Boolean]): JQuery = jquery.attr(attributes.toJSDictionary)
 
     /** Set one or more attributes for the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-    def attr(attributeName: String, attributeValue: String | Double): JQuery = jquery.attr(attributeName, attributeValue)
-
-    /** Set one or more attributes for the set of matched elements. <br/>
-      * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
-    def attr(attributeName: String, function: (Int, String) => String | Double): JQuery = jquery.attr(attributeName, function)
+    def attr(attributeName: String, function: (Int, String) => String | Int | Double | Boolean): JQuery = jquery.attr(attributeName, function)
 
     /** Insert content, specified by the parameter, before each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/before/">jQuery Docs</a> */
@@ -1006,15 +1003,11 @@ object JQuery {
 
     /** Set one or more CSS properties for the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-    def css(attributeName: String, attributeValue: String | Int): JQuery = jquery.css(attributeName, attributeValue)
+    def css(propertyNames: Map[String, String | Int | Double | Boolean]): JQuery = jquery.css(propertyNames.toJSDictionary)
 
     /** Set one or more CSS properties for the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-    def css(attributeName: String, attributeFun: (Int, String) => String | Int): JQuery = jquery.css(attributeName, attributeFun)
-
-    /** Set one or more CSS properties for the set of matched elements. <br/>
-      * See: <a href="http://api.jquery.com/css/#css-propertyName-value">jQuery Docs</a> */
-    def css(propertyNames: Map[String, String | Int]): JQuery = jquery.css(propertyNames.toJSDictionary)
+    def css(attributeName: String, attributeFun: (Int, String) => String | Int | Double | Boolean): JQuery = jquery.css(attributeName, attributeFun)
 
     /** Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute. <br/>
       * See: <a href="http://api.jquery.com/data/#data-key">jQuery Docs</a> */
@@ -1034,7 +1027,7 @@ object JQuery {
 
     /** Iterate over a jQuery object, executing a function for each matched element. <br/>
       * See: <a href="http://api.jquery.com/each/">jQuery Docs</a> */
-    def each(callback: (Element, Int, Element) => Any): JQuery = jquery.each(callback)
+    def each(callback: (Element, Int) => Any): JQuery = jquery.each(callback)
 
     /** Bind an event handler to the "error" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/error/">jQuery Docs</a> */
@@ -1116,7 +1109,7 @@ object JQuery {
 
     /** Set the CSS height of every matched element. <br/>
       * See: <a href="http://api.jquery.com/height/#height-value">jQuery Docs</a> */
-    def height(function: (Element, Int, Int) => String | Double): JQuery = jquery.height(function)
+    def height(function: (Element, Int, Int) => String | Int | Double): JQuery = jquery.height(function)
 
     /** Hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
@@ -1140,11 +1133,11 @@ object JQuery {
 
     /** Set the CSS inner height of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/innerHeight/#innerHeight-value">jQuery Docs</a> */
-    def innerHeight(function: (Element, Int, Double) => Double | String): JQuery = jquery.innerHeight(function)
+    def innerHeight(function: (Element, Int, Double) => Int | Double | String): JQuery = jquery.innerHeight(function)
 
     /** Set the CSS inner width of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/innerWidth/#innerWidth-value">jQuery Docs</a> */
-    def innerWidth(function: (Element, Int, Double) => Double | String): JQuery = jquery.innerWidth(function)
+    def innerWidth(function: (Element, Int, Double) => Int | Double | String): JQuery = jquery.innerWidth(function)
 
     /** Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments. <br/>
       * See: <a href="http://api.jquery.com/is/">jQuery Docs</a> */
@@ -1244,11 +1237,14 @@ object JQuery {
 
     /** Get the current coordinates of the first element in the set of matched elements, relative to the document. <br/>
       * See: <a href="http://api.jquery.com/offset/">jQuery Docs</a> */
-    def offset(): Map[String, Double] = jquery.offset().toMap
+    def offset(): Offset = {
+      val o = jquery.offset()
+      Offset(o("top"), o("left"))
+    }
 
     /** Get the current coordinates of the first element in the set of matched elements, relative to the document. <br/>
       * See: <a href="http://api.jquery.com/offset/">jQuery Docs</a> */
-    def offset(coordinates: Map[String, Double]): JQuery  = jquery.offset(coordinates.toJSDictionary)
+    def offset(coordinates: Offset): JQuery  = jquery.offset(coordinates.toJSDictionary)
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
@@ -1332,7 +1328,7 @@ object JQuery {
 
       type ThisFunctionCallback = ThisFunction1[Element, JQueryEvent, Any]
 
-      jquery.each((element: Element, idx: Int, _: Element) => {
+      jquery.each((element: Element, idx: Int) => {
         val cb = params match {
           case CallbackParameters(false, null, null) => c: ThisFunctionCallback => jQ(element).on(event, c)
           case CallbackParameters(false, null, data) => c: ThisFunctionCallback => jQ(element).on(event, data, c)
@@ -1366,9 +1362,9 @@ object JQuery {
 
     /** Get the current coordinates of the first element in the set of matched elements, relative to the offset parent. <br/>
       * See: <a href="http://api.jquery.com/position/">jQuery Docs</a> */
-    def position(): (Double, Double) = {
+    def position(): Position = {
       val p = jquery.position()
-      (p("top"), p("left"))
+      Position(p("top"), p("left"))
     }
 
     /** Insert content, specified by the parameter, to the beginning of each element in the set of matched elements. <br/>
@@ -1513,7 +1509,7 @@ object JQuery {
 
     /** Set the CSS width of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/height/#height-value">jQuery Docs</a> */
-    def width(function: (Element, Int, Int) => String | Double): JQuery = jquery.width(function)
+    def width(function: (Element, Int, Int) => String | Int | Double): JQuery = jquery.width(function)
 
     /** Wrap an HTML structure around each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/wrap/">jQuery Docs</a> */

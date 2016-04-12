@@ -1,8 +1,8 @@
 name := "udash-jquery"
 
-version := "1.0.0-SNAPSHOT"
+version := "1.0.0-rc.2"
 organization := "io.udash"
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 scalacOptions in ThisBuild ++= Seq(
   "-feature",
   "-deprecation",
@@ -22,7 +22,7 @@ libraryDependencies ++= Seq(
 )
 
 jsDependencies +=
-  "org.webjars" % "jquery" % "2.2.0" / "2.2.0/jquery.js" minified "2.2.0/jquery.min.js"
+  "org.webjars" % "jquery" % "2.2.3" / "2.2.3/jquery.js" minified "2.2.3/jquery.min.js"
 
 requiresDOM in Test := true
 persistLauncher in Test := false

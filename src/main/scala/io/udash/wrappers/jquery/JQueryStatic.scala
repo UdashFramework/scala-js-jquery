@@ -3,6 +3,7 @@ package io.udash.wrappers.jquery
 import org.scalajs.dom._
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSName
 
 @js.native
 trait JQueryStatic extends js.Object {
@@ -66,7 +67,8 @@ trait JQueryStatic extends js.Object {
 
   /** A multi-purpose callbacks list object that provides a powerful way to manage callback lists. <br/>
     * See: <a href="http://api.jquery.com/jQuery.Callbacks/">jQuery Docs</a> */
-  def callbacks[FunType <: js.Function1[ArgType, js.Any], ArgType](flags: String): JQueryCallbacks[FunType, ArgType] = js.native
+  @JSName("Callbacks")
+  def callbacks[FunType <: js.Function1[ArgType, js.Any], ArgType](flags: String = js.native): JQueryCallbacks[FunType, ArgType] = js.native
 
   /** Check to see if a DOM element is a descendant of another DOM element. <br/>
     * See: <a href="http://api.jquery.com/jQuery.contains/">jQuery Docs</a> */
@@ -79,7 +81,8 @@ trait JQueryStatic extends js.Object {
   /** A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues,
     * invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function. <br/>
     * See: <a href="http://api.jquery.com/jQuery.Deferred/">jQuery Docs</a> */
-  def deferred[FunType <: js.Function1[ArgType, js.Any], ArgType](beforeStart: JQueryDeferred[_, _]): JQueryDeferred[FunType, ArgType] = js.native
+  @JSName("Deferred")
+  def deferred[FunType <: js.Function1[ArgType, js.Any], ArgType](beforeStart: JQueryDeferred[_, _] = js.native): JQueryDeferred[FunType, ArgType] = js.native
 
   /** Execute the next function on the queue for the matched element. <br/>
     * See: <a href="http://api.jquery.com/jQuery.dequeue/">jQuery Docs</a> */

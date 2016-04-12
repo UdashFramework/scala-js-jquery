@@ -26,6 +26,11 @@ trait JQueryPromise[FunType <: js.Function1[ArgType, js.Any], ArgType] extends j
     * See: <a href="http://api.jquery.com/deferred.promise/">jQuery Docs</a> */
   def promise(target: js.Object = js.native): JQueryPromise[FunType, ArgType] = js.native
 
+  /** Add handlers to be called when the Deferred object is resolved, rejected, or still in progress. <br/>
+    * See: <a href="http://api.jquery.com/deferred.then/">jQuery Docs</a> */
+  // Usage of then as identifier is deprecated. It can be used as a keyword in future versions of scala.
+  // def then(done: FunType, fail: FunType, progress: FunType): JQueryDeferred[FunType, ArgType] = js.native
+
   /** Determine the current state of a Deferred object. <br/>
     * See: <a href="http://api.jquery.com/deferred.resolveWith/">jQuery Docs</a> */
   private[jquery] def state: String = js.native
