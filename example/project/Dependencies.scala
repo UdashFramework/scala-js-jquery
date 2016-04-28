@@ -3,7 +3,7 @@ import sbt._
 
 object Dependencies extends Build {
   val udashCoreVersion = "0.1.1"
-  val udashJQueryVersion = "1.0.0-rc.1"
+  val udashJQueryVersion = "1.0.0"
 
   val deps = Def.setting(Seq[ModuleID](
     "io.udash" %%% "udash-core-frontend" % udashCoreVersion,
