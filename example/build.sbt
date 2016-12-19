@@ -1,6 +1,6 @@
 name := "jquery-demo"
 
-version in ThisBuild := "1.0.0-SNAPSHOT"
+version in ThisBuild := "1.0.1-SNAPSHOT"
 scalaVersion in ThisBuild := "2.11.8"
 organization in ThisBuild := "io.udash"
 crossPaths in ThisBuild := false
@@ -14,12 +14,6 @@ scalacOptions in ThisBuild ++= Seq(
   "-Xfuture",
   "-Xfatal-warnings",
   "-Xlint:_,-missing-interpolator,-adapted-args"
-)
-
-//TODO: remove it after scala-js-jquery 1.0 release
-externalResolvers in ThisBuild := Seq(
-  DefaultMavenRepository,
-  Resolver.file("local", file(System.getProperty("user.home") + "/.ivy2/local"))(Resolver.ivyStylePatterns)
 )
 
 val generatedDir = file("generated")

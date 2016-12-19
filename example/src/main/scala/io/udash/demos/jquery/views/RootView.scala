@@ -16,14 +16,14 @@ class RootView extends View {
   private val content = div(
     a(href := IndexState.url)(h1("jquery-demo")),
     child
-  ).render
+  )
 
-  override def getTemplate: Element = content
+  override def getTemplate: Modifier = content
 
   override def renderChild(view: View): Unit = {
     import io.udash.wrappers.jquery._
-    val newChild = view.getTemplate
-    jQ(child).replaceWith(newChild)
-    child = newChild
+
+    jQ(child).children().remove()
+    view.getTemplate.applyTo(child)
   }
 }

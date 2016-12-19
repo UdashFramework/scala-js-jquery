@@ -6,14 +6,9 @@ import org.scalajs.dom.Element
 
 object ErrorViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new ErrorView)
 
-class ErrorView extends View {
+class ErrorView extends FinalView {
   import scalatags.JsDom.all._
 
-  private val content = h3(
-    "URL not found!"
-  ).render
-
-  override def getTemplate: Element = content
-
-  override def renderChild(view: View): Unit = {}
+  override def getTemplate: Modifier =
+    h3("URL not found!")
 }

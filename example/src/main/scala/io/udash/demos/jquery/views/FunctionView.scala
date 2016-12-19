@@ -3,13 +3,13 @@ package io.udash.demos.jquery.views
 import io.udash._
 import org.scalajs.dom.{Element, Event}
 
-abstract class FunctionView extends View {
+abstract class FunctionView extends FinalView {
   import scalatags.JsDom.all._
 
   protected val content: Element
   protected val script: () => Any
 
-  override def getTemplate: Element = {
+  override def getTemplate: Modifier =
     div(
       content,
       button(
@@ -18,8 +18,5 @@ abstract class FunctionView extends View {
           false
         })
       )("Run script")
-    ).render
-  }
-
-  override def renderChild(view: View): Unit = {}
+    )
 }
