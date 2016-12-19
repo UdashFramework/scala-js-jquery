@@ -6,7 +6,7 @@ import org.scalajs.dom.Element
 
 object IndexViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new IndexView)
 
-class IndexView extends View {
+class IndexView extends FinalView {
   import Context._
 
   import scalatags.JsDom.all._
@@ -29,9 +29,7 @@ class IndexView extends View {
       li(a(href := OnOneOffState.url)(".on() & .one() & .off()")),
       li(a(href := OffsetPositionState.url)(".offset() & .position()"))
     )
-  ).render
+  )
 
-  override def getTemplate: Element = content
-
-  override def renderChild(view: View): Unit = {}
+  override def getTemplate: Modifier = content
 }
