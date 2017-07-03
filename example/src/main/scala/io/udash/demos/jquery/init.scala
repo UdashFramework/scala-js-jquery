@@ -16,12 +16,12 @@ object Context {
   implicit val applicationInstance = new Application[RoutingState](routingRegistry, viewPresenterRegistry, RootState)
 }
 
-object Init extends JSApp {
+object Init {
   import Context._
 
   @JSExport
-  override def main(): Unit = {
-    jQ(document).ready((_: Element) => {
+  def main(args: Array[String]): Unit = {
+    jQ((_: Element) => {
       val appRoot = jQ("#application").get(0)
       if (appRoot.isEmpty) {
         dom.console.error("Application root element not found! Check you index.html file!")
