@@ -31,10 +31,6 @@ trait JQueryStatic extends js.Object {
 
   /** Return a collection of matched elements either found in the DOM based on passed argument(s) or created by passing an HTML string. <br/>
     * See: <a href="http://api.jquery.com/jQuery/">jQuery Docs</a> */
-  private[jquery] def apply(elementArray: js.Array[Element]): JQuery = js.native
-
-  /** Return a collection of matched elements either found in the DOM based on passed argument(s) or created by passing an HTML string. <br/>
-    * See: <a href="http://api.jquery.com/jQuery/">jQuery Docs</a> */
   def apply(jq: JQuery): JQuery = js.native
 
   /** Binds a function to be executed when the DOM has finished loading. <br/>
@@ -56,14 +52,6 @@ trait JQueryStatic extends js.Object {
   /** Perform an asynchronous HTTP (Ajax) request. <br/>
     * See: <a href="http://api.jquery.com/jQuery.ajax/">jQuery Docs</a> */
   def ajax(url: String, settings: JQueryAjaxSettings = js.native): JQueryXHR = js.native
-
-  /** Handle custom Ajax options or modify existing options before each request is sent and before they are processed by `.ajax()`. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.ajaxPrefilter/">jQuery Docs</a> */
-  private[jquery] def ajaxPrefilter(dataTypes: String, handler: js.Function3[js.Dynamic, js.Dynamic, JQueryXHR, js.Any]): Unit = js.native
-
-  /** Creates an object that handles the actual transmission of Ajax data. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.ajaxTransport/">jQuery Docs</a> */
-  private[jquery] def ajaxTransport(tpe: String, handler: js.Function3[js.Dynamic, js.Dynamic, JQueryXHR, js.Any]): Unit = js.native
 
   /** A multi-purpose callbacks list object that provides a powerful way to manage callback lists. <br/>
     * See: <a href="http://api.jquery.com/jQuery.Callbacks/">jQuery Docs</a> */
@@ -88,37 +76,17 @@ trait JQueryStatic extends js.Object {
     * See: <a href="http://api.jquery.com/jQuery.dequeue/">jQuery Docs</a> */
   def dequeue(element: Element, queueName: String): Unit = js.native
 
-  /** A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and
-    * array-like objects with a length property (such as a function's arguments object) are iterated by numeric index,
-    * from 0 to length-1. Other objects are iterated via their named properties. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.each/">jQuery Docs</a> */
-  private[jquery] def each[T](array: js.Array[T], callback: js.Function2[Int, T, js.Any]): Unit = js.native
-
-  /** A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and
-    * array-like objects with a length property (such as a function's arguments object) are iterated by numeric index,
-    * from 0 to length-1. Other objects are iterated via their named properties. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.each/">jQuery Docs</a> */
-  private[jquery] def each(obj: js.Any, callback: js.Function2[String, js.Any, js.Any]): Unit = js.native
+  /** Escapes any character that has a special meaning in a CSS selector. <br/>
+    * See: <a href="http://api.jquery.com/jQuery.escapeSelector/">jQuery Docs</a> */
+  def escapeSelector(index: Int): JQuery = js.native
 
   /** Load data from the server using a HTTP GET request. <br/>
     * See: <a href="http://api.jquery.com/jQuery.get/">jQuery Docs</a> */
   def get(settings: JQueryAjaxSettings): Unit = js.native
 
-  /** Load data from the server using a HTTP GET request. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.get/">jQuery Docs</a> */
-  private[jquery] def get(url: String, data: js.Any | String = js.native, success: js.Function3[js.Dynamic, String, JQueryXHR, js.Any] = js.native, dataType: String = js.native): JQueryXHR = js.native
-
-  /** Load a JavaScript file from the server using a GET HTTP request, then execute it. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.getScript/">jQuery Docs</a> */
-  private[jquery] def getScript(url: String, success: (String, String, JQueryXHR) => js.Any): JQueryXHR = js.native
-
   /** Execute some JavaScript code globally. <br/>
     * See: <a href="http://api.jquery.com/jQuery.globalEval/">jQuery Docs</a> */
   def globalEval(code: String): Unit = js.native
-
-  /** Finds the elements of an array which satisfy a filter function. The original array is not affected. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.grep/">jQuery Docs</a> */
-  private[jquery] def grep[T](array: js.Array[T], function: js.Function2[T, Int, Boolean], invert: Boolean): js.Array[T] = js.native
 
   /** Determine whether an element has any jQuery data associated with it. <br/>
     * See: <a href="http://api.jquery.com/jQuery.hasData/">jQuery Docs</a> */
@@ -126,14 +94,12 @@ trait JQueryStatic extends js.Object {
 
   /** Determine whether an element has any jQuery data associated with it. <br/>
     * See: <a href="http://api.jquery.com/jQuery.holdReady/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.2.0", "1.1.0")
   def holdReady(hold: Boolean): Unit = js.native
-
-  /** Search for a specified value within an array and return its index (or -1 if not found). <br/>
-    * See: <a href="http://api.jquery.com/jQuery.inArray/">jQuery Docs</a> */
-  private[jquery] def inArray[T](value: T, array: js.Array[T], fromIndex: Int): Int = js.native
 
   /** Determine whether the argument is an array. <br/>
     * See: <a href="http://api.jquery.com/jQuery.isArray/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.2.0", "1.1.0")
   def isArray[T](el: js.Any): Boolean = js.native
 
   /** Check to see if an object is empty (contains no enumerable properties). <br/>
@@ -166,6 +132,7 @@ trait JQueryStatic extends js.Object {
 
   /** Takes a well-formed JSON string and returns the resulting JavaScript value. <br/>
     * See: <a href="http://api.jquery.com/jQuery.isXMLDoc/">jQuery Docs</a> */
+  @deprecated("Since all the browsers supported by jQuery 3.0 support the native JSON.parse() method, we are deprecating jQuery.parseJSON().", "1.1.0")
   def parseJSON(json: String): js.Any = js.native
 
   /** Parses a string into an XML document. <br/>
@@ -178,7 +145,12 @@ trait JQueryStatic extends js.Object {
 
   /** Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers. <br/>
     * See: <a href="http://api.jquery.com/jQuery.unique/">jQuery Docs</a> */
+  @deprecated("The jQuery.unique() method has been renamed to jQuery.uniqueSort() to make its behavior easier to understand.", "1.1.0")
   def unique[T](array: js.Array[T]): js.Array[T] = js.native
+
+  /** Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers. <br/>
+    * See: <a href="http://api.jquery.com/jQuery.unique/">jQuery Docs</a> */
+  def uniqueSort[T](array: js.Array[T]): js.Array[T] = js.native
 
   /** Provides a way to execute callback functions based on one or more objects, usually Deferred objects that represent asynchronous events. <br/>
     * See: <a href="http://api.jquery.com/jQuery.removeData/">jQuery Docs</a> */
@@ -206,49 +178,56 @@ object JQueryStatic {
 
     /** Handle custom Ajax options or modify existing options before each request is sent and before they are processed by `.ajax()`. <br/>
       * See: <a href="http://api.jquery.com/jQuery.ajaxPrefilter/">jQuery Docs</a> */
-    def ajaxPrefilter(dataTypes: String, handler: (js.Dynamic, js.Dynamic, JQueryXHR) => js.Any): Unit = jQueryStatic.ajaxPrefilter(dataTypes, handler)
+    def ajaxPrefilter(dataTypes: String, handler: (js.Dynamic, js.Dynamic, JQueryXHR) => js.Any): Unit =
+      jQueryStatic.asInstanceOf[js.Dynamic].ajaxPrefilter(dataTypes, handler)
 
     /** Creates an object that handles the actual transmission of Ajax data. <br/>
       * See: <a href="http://api.jquery.com/jQuery.ajaxTransport/">jQuery Docs</a> */
-    def ajaxTransport(tpe: String, handler: (js.Dynamic, js.Dynamic, JQueryXHR) => js.Any): Unit = jQueryStatic.ajaxTransport(tpe, handler)
+    def ajaxTransport(tpe: String, handler: (js.Dynamic, js.Dynamic, JQueryXHR) => js.Any): Unit =
+      jQueryStatic.asInstanceOf[js.Dynamic].ajaxTransport(tpe, handler)
 
     /** A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and
       * array-like objects with a length property (such as a function's arguments object) are iterated by numeric index,
       * from 0 to length-1. Other objects are iterated via their named properties. <br/>
       * See: <a href="http://api.jquery.com/jQuery.each/">jQuery Docs</a> */
-    def each[T](array: Seq[T], callback: (Int, T) => js.Any): Unit = jQueryStatic.each[T](array.toJSArray, callback)
+    def each[T](array: Seq[T], callback: (Int, T) => js.Any): Unit =
+      jQueryStatic.asInstanceOf[js.Dynamic].each(array.toJSArray, callback)
 
     /** A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and
       * array-like objects with a length property (such as a function's arguments object) are iterated by numeric index,
       * from 0 to length-1. Other objects are iterated via their named properties. <br/>
       * See: <a href="http://api.jquery.com/jQuery.each/">jQuery Docs</a> */
-    def each(obj: js.Any, callback: (String, js.Any) => js.Any): Unit = jQueryStatic.each(obj, callback)
+    def each(obj: js.Any, callback: (String, js.Any) => js.Any): Unit =
+      jQueryStatic.asInstanceOf[js.Dynamic].each(obj, callback)
 
     /** Load data from the server using a HTTP GET request. <br/>
       * See: <a href="http://api.jquery.com/jQuery.get/">jQuery Docs</a> */
     def get[T](url: String, data: js.Any, success: (T, String, JQueryXHR) => js.Any, dataType: String): JQueryXHR = {
       val callback = (data: js.Dynamic, status: String, xhr: JQueryXHR) => success(data.asInstanceOf[T], status, xhr)
-      jQueryStatic.get(url, data, callback, dataType)
+      jQueryStatic.asInstanceOf[js.Dynamic].get(url, data, callback, dataType).asInstanceOf[JQueryXHR]
     }
 
     /** Load JSON-encoded data from the server using a GET HTTP request. <br/>
       * See: <a href="http://api.jquery.com/jQuery.getJSON/">jQuery Docs</a> */
     def getJSON[T](url: String, data: js.Any, success: (T, String, JQueryXHR) => js.Any): JQueryXHR = {
       val callback = (data: js.Dynamic, status: String, xhr: JQueryXHR) => success(data.asInstanceOf[T], status, xhr)
-      jQueryStatic.get(url, data, callback, "json")
+      jQueryStatic.asInstanceOf[js.Dynamic].get(url, data, callback, "json").asInstanceOf[JQueryXHR]
     }
 
     /** Load a JavaScript file from the server using a GET HTTP request, then execute it. <br/>
       * See: <a href="http://api.jquery.com/jQuery.getScript/">jQuery Docs</a> */
-    def getScript(url: String, success: (String, String, JQueryXHR) => js.Any): JQueryXHR = jQueryStatic.getScript(url, success)
+    def getScript(url: String, success: (String, String, JQueryXHR) => js.Any): JQueryXHR =
+      jQueryStatic.asInstanceOf[js.Dynamic].getScript(url, success).asInstanceOf[JQueryXHR]
 
     /** Finds the elements of an array which satisfy a filter function. The original array is not affected. <br/>
       * See: <a href="http://api.jquery.com/jQuery.grep/">jQuery Docs</a> */
-    def grep[T](array: Seq[T], function: (T, Int) => Boolean, invert: Boolean = false): js.Array[T] = jQueryStatic.grep[T](array.toJSArray, function, invert)
+    def grep[T](array: Seq[T], function: (T, Int) => Boolean, invert: Boolean = false): Seq[T] =
+      jQueryStatic.asInstanceOf[js.Dynamic].grep(array.toJSArray, function, invert).asInstanceOf[js.Array[T]].toSeq
 
     /** Search for a specified value within an array and return its index (or -1 if not found). <br/>
       * See: <a href="http://api.jquery.com/jQuery.inArray/">jQuery Docs</a> */
-    def inArray[T](value: T, array: Seq[T], fromIndex: Int): Int = jQueryStatic.inArray(value, array.toJSArray, fromIndex)
+    def inArray[T](value: T, array: Seq[T], fromIndex: Int): Int =
+      jQueryStatic.asInstanceOf[js.Dynamic].inArray(value.asInstanceOf[js.Dynamic], array.toJSArray, fromIndex).asInstanceOf[Int]
 
     def parse(data: String) = {
       jQ(jQueryStatic.parseHTML(data)(0))

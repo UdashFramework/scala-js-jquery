@@ -3,8 +3,8 @@ dist: trusty
 
 jdk: oraclejdk8
 scala:
-  - 2.11.8
-  - 2.12.1
+  - 2.11.11
+  - 2.12.2
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -24,4 +24,4 @@ before_script:
 script:
   - sbt ++$TRAVIS_SCALA_VERSION "set (jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.scalajs.jsenv.selenium.Chrome))" test
   - sbt ++$TRAVIS_SCALA_VERSION publishLocal
-  # - cd example && sbt ++$TRAVIS_SCALA_VERSION compile
+  - cd example && sbt ++$TRAVIS_SCALA_VERSION compile
