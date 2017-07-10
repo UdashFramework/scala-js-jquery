@@ -2,7 +2,7 @@ import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport._
 import sbt.Keys._
 import sbt._
 
-object UdashBuild extends Build {
+object UdashBuild {
   val StaticFilesDir = "UdashStatic"
   val WebContent = "WebContent"
 

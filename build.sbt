@@ -1,10 +1,10 @@
 
 name := "udash-jquery"
 
-version := "1.0.1"
+version := "1.1.0"
 organization := "io.udash"
-scalaVersion := "2.12.1"
-crossScalaVersions := Seq("2.11.8", "2.12.1")
+scalaVersion := "2.12.2"
+crossScalaVersions := Seq("2.11.11", "2.12.2")
 scalacOptions in ThisBuild ++= Seq(
   "-feature",
   "-deprecation",
@@ -14,23 +14,24 @@ scalacOptions in ThisBuild ++= Seq(
   "-language:dynamics",
   "-Xfuture",
   "-Xfatal-warnings",
-  "-Xlint:_,-missing-interpolator,-adapted-args"
+  CrossVersion.partialVersion(scalaVersion.value).collect {
+    // WORKAROUND https://github.com/scala/scala/pull/5402
+    case (2, 12) => "-Xlint:-unused,_"
+  }.getOrElse("-Xlint:_")
 )
 
-jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.scalajs.jsenv.selenium.Firefox)
+jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.scalajs.jsenv.selenium.Firefox())
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-  "org.scalatest" %%% "scalatest" % "3.0.1" % Test,
-  "com.lihaoyi" %%% "scalatags" % "0.6.2" % Test
+  "org.scala-js" %%% "scalajs-dom" % "0.9.2",
+  "org.scalatest" %%% "scalatest" % "3.0.3" % Test,
+  "com.lihaoyi" %%% "scalatags" % "0.6.5" % Test
 )
 
 jsDependencies +=
-  "org.webjars" % "jquery" % "2.2.4" / "2.2.4/jquery.js" minified "2.2.4/jquery.min.js"
+  "org.webjars" % "jquery" % "3.2.1" / "3.2.1/jquery.js" minified "3.2.1/jquery.min.js"
 
 requiresDOM in Test := true
-persistLauncher in Test := false
-scalaJSUseRhino in Test := false
 
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
