@@ -4,7 +4,11 @@ dist: trusty
 jdk: oraclejdk8
 scala:
   - 2.11.11
-  - 2.12.2
+  - 2.12.3
+
+env:
+  - SCALAJS_VERSION="0.6.20"
+  - SCALAJS_VERSION="1.0.0-M1"
 
 before_script:
   - "export DISPLAY=:99.0"
@@ -17,11 +21,11 @@ before_script:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
   # Install Selenium chromedriver
-  - wget http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
+  - wget http://chromedriver.storage.googleapis.com/2.32/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d selenium-bin
   - export PATH=$PWD/selenium-bin:$PATH
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION "set (jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.scalajs.jsenv.selenium.Chrome))" test
+  - sbt ++$TRAVIS_SCALA_VERSION "set (jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.openqa.selenium.remote.DesiredCapabilities.chrome()))" test
   - sbt ++$TRAVIS_SCALA_VERSION publishLocal
   - cd example && sbt ++$TRAVIS_SCALA_VERSION compile
