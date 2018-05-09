@@ -1,7 +1,5 @@
 package io.udash.wrappers.jquery
 
-import org.scalajs.dom._
-
 import scala.scalajs.js
 
 @js.native
