@@ -140,7 +140,7 @@ trait JQuery extends js.Object {
 
   /** Remove the set of matched elements from the DOM. <br/>
     * See: <a href="http://api.jquery.com/detach/">jQuery Docs</a> */
-  def detach(selector: Selector): JQuery = js.native
+  def detach(selector: Selector = js.native): JQuery = js.native
 
   /** Remove all child nodes of the set of matched elements from the DOM. <br/>
     * See: <a href="http://api.jquery.com/empty/">jQuery Docs</a> */
