@@ -5,7 +5,7 @@ import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object DataViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new DataView)
+object DataViewPresenter extends StaticViewFactory[IndexState.type](() => new DataView)
 
 /** Based on examples from: <a href="http://api.jquery.com/data/">jQuery Docs</a>. */
 class DataView extends FunctionView {

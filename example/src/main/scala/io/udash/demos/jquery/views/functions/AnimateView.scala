@@ -8,7 +8,7 @@ import org.scalajs.dom.Element
 
 import scalatags.JsDom.tags2
 
-object AnimateViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new AnimateView)
+object AnimateViewPresenter extends StaticViewFactory[IndexState.type](() => new AnimateView)
 
 /** Based on examples from: <a href="http://api.jquery.com/animate/">jQuery Docs</a>. */
 class AnimateView extends FunctionView {
@@ -39,7 +39,7 @@ class AnimateView extends FunctionView {
   ).render
 
   override protected val script = () => {
-    jQ("#go1").click((_: Element, _: JQueryEvent) => {
+    jQ("#go1").on("click", (_: Element, _: JQueryEvent) => {
       jQ( "#block1" )
         .animate(Map(
           "width" -> "90%"
@@ -51,18 +51,18 @@ class AnimateView extends FunctionView {
         .animate(Map("borderRightWidth" -> "15px"), 1500)
     })
 
-    jQ("#go2").click((_: Element, _: JQueryEvent) => {
+    jQ("#go2").on("click", (_: Element, _: JQueryEvent) => {
       jQ("#block2")
         .animate(Map("width" -> "90%"), 1000)
         .animate(Map("fontSize" -> "24px"), 1000)
         .animate(Map("borderLeftWidth" -> "15px"), 1000)
     })
 
-    jQ("#go3").click((_: Element, _: JQueryEvent) => {
-      jQ("#go1").add("#go2").click()
+    jQ("#go3").on("click", (_: Element, _: JQueryEvent) => {
+      jQ("#go1").add("#go2").trigger("click")
     })
 
-    jQ("#go4").click((_: Element, _: JQueryEvent) => {
+    jQ("#go4").on("click", (_: Element, _: JQueryEvent) => {
       // TODO: It does not work without explicit Map elements type
       import scala.scalajs.js.`|`
       jQ("div").css(Map[String, String | Int | Double | Boolean](

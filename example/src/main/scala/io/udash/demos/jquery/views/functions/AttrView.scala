@@ -6,7 +6,7 @@ import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.{Element, Event}
 
-object AttrViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new AttrView)
+object AttrViewPresenter extends StaticViewFactory[IndexState.type](() => new AttrView)
 
 /** Based on examples from: <a href="http://api.jquery.com/animate/">jQuery Docs</a>. */
 class AttrView extends FunctionView {
@@ -18,34 +18,34 @@ class AttrView extends FunctionView {
     label(`for` := "check1")("Check me"),
     p(),
     button(onclick :+= ((_: Event) => {
-      jQ(".demo input").attr("data-checked", "checked").change()
+      jQ(".demo input").attr("data-checked", "checked").trigger("change")
       false
     }))(".attr(\"data-checked\", \"checked\")"),
     button(onclick :+= ((_: Event) => {
-      jQ(".demo input").attr("data-checked", "").change()
+      jQ(".demo input").attr("data-checked", "").trigger("change")
       false
     }))(".attr(\"data-checked\", \"\")"),
     button(onclick :+= ((_: Event) => {
-      jQ(".demo input").attr("data-checked", null).change()
+      jQ(".demo input").attr("data-checked", null).trigger("change")
       false
     }))(".attr(\"data-checked\", null)"), br(),
     button(onclick :+= ((_: Event) => {
-      jQ(".demo input").prop("checked", true).change()
+      jQ(".demo input").prop("checked", true).trigger("change")
       false
     }))(".prop(\"checked\", true)"),
     button(onclick :+= ((_: Event) => {
-      jQ(".demo input").prop("checked", false).change()
+      jQ(".demo input").prop("checked", false).trigger("change")
       false
     }))(".prop(\"checked\", false)")
   ).render
 
   override protected val script = () => {
-    jQ(".demo input").change((input: Element, _: JQueryEvent) => {
+    jQ(".demo input").on("change", (input: Element, _: JQueryEvent) => {
       jQ(".demo p").html(
         s""".attr('data-checked'): ${jQ(input).attr("data-checked")}<br/>
            |.prop('checked'): ${jQ(input).prop("checked")}<br/>
            |.is(':checked'): ${jQ(input).is(":checked")}""".stripMargin
       )
-    }).change()
+    }).trigger("change")
   }
 }

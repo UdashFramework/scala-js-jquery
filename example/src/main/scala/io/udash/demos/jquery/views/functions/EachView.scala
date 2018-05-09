@@ -6,7 +6,7 @@ import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.Element
 
-object EachViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new EachView)
+object EachViewPresenter extends StaticViewFactory[IndexState.type](() => new EachView)
 
 /** Based on examples from: <a href="http://api.jquery.com/each/">jQuery Docs</a>. */
 class EachView extends FunctionView {

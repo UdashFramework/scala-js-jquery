@@ -4,8 +4,8 @@ import io.udash._
 import io.udash.demos.jquery.views.functions._
 import io.udash.demos.jquery.views.{ErrorViewPresenter, IndexViewPresenter, RootViewPresenter}
 
-class StatesToViewPresenterDef extends ViewPresenterRegistry[RoutingState] {
-  def matchStateToResolver(state: RoutingState): ViewPresenter[_ <: RoutingState] = state match {
+class StatesToViewPresenterDef extends ViewFactoryRegistry[RoutingState] {
+  def matchStateToResolver(state: RoutingState): ViewFactory[_ <: RoutingState] = state match {
     case RootState => RootViewPresenter
     case IndexState => IndexViewPresenter
     case AddState => AddViewPresenter

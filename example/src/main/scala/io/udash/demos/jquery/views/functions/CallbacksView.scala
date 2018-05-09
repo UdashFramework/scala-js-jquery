@@ -7,7 +7,7 @@ import io.udash.wrappers.jquery._
 
 import scala.scalajs.js
 
-object CallbacksViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new CallbacksView)
+object CallbacksViewPresenter extends StaticViewFactory[IndexState.type](() => new CallbacksView)
 
 /** Based on examples from: <a href="http://api.jquery.com/callbacks.add/">jQuery Docs</a>. */
 class CallbacksView extends FunctionView {
@@ -40,11 +40,11 @@ class CallbacksView extends FunctionView {
       jQ("#div").append(li(s"$a / $b = ${a/b}").render)
     })
 
-    callbacks.fire(1, 1)
-    callbacks.fire(3, 3)
-    callbacks.fire(7, 4)
+    callbacks.fire((1, 1))
+    callbacks.fire((3, 3))
+    callbacks.fire((7, 4))
 
     callbacks.disable()
-    callbacks.fire(1, 2)
+    callbacks.fire((1, 2))
   }
 }

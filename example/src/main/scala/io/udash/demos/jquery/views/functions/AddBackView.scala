@@ -7,7 +7,7 @@ import io.udash.wrappers.jquery._
 
 import scalatags.JsDom.tags2
 
-object AddBackViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new AddBackView)
+object AddBackViewPresenter extends StaticViewFactory[IndexState.type](() => new AddBackView)
 
 /** Based on examples from: <a href="http://api.jquery.com/addBack/">jQuery Docs</a>. */
 class AddBackView extends FunctionView {

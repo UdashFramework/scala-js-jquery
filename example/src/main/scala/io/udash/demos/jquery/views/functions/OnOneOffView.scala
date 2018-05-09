@@ -6,7 +6,7 @@ import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.{Element, Event}
 
-object OnOneOffViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new OnOneOffView)
+object OnOneOffViewPresenter extends StaticViewFactory[IndexState.type](() => new OnOneOffView)
 
 /** Based on examples from: <a href="http://api.jquery.com/on/">jQuery Docs</a>. */
 class OnOneOffView extends FunctionView {
