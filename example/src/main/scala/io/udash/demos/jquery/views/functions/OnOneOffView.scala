@@ -6,7 +6,7 @@ import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.{Element, Event}
 
-object OnOneOffViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new OnOneOffView)
+object OnOneOffViewPresenter extends StaticViewFactory[IndexState.type](() => new OnOneOffView)
 
 /** Based on examples from: <a href="http://api.jquery.com/on/">jQuery Docs</a>. */
 class OnOneOffView extends FunctionView {
@@ -26,8 +26,8 @@ class OnOneOffView extends FunctionView {
       disabled := "disabled",
       onclick :+= ((_: Event) => {
         jQ(".demo #click")
-          .off("click", onCallback)
-          .off("click", oneCallback)
+          .off(EventName.click, onCallback)
+          .off(EventName.click, oneCallback)
         false
       })
     )("Off")
@@ -35,8 +35,8 @@ class OnOneOffView extends FunctionView {
 
   override protected val script = () => {
     jQ(".demo #click")
-      .on("click", onCallback)
-      .one("click", oneCallback)
+      .on(EventName.click, onCallback)
+      .one(EventName.click, oneCallback)
 
     jQ(".demo button")
       .prop("disabled", "")

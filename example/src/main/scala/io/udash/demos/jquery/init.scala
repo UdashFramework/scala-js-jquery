@@ -3,9 +3,8 @@ package io.udash.demos.jquery
 import io.udash._
 import io.udash.wrappers.jquery._
 import org.scalajs.dom
-import org.scalajs.dom.{Element, document}
+import org.scalajs.dom.Element
 
-import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 
 object Context {
@@ -13,7 +12,7 @@ object Context {
   private val routingRegistry = new RoutingRegistryDef
   private val viewPresenterRegistry = new StatesToViewPresenterDef
 
-  implicit val applicationInstance = new Application[RoutingState](routingRegistry, viewPresenterRegistry, RootState)
+  implicit val applicationInstance = new Application[RoutingState](routingRegistry, viewPresenterRegistry)
 }
 
 object Init {

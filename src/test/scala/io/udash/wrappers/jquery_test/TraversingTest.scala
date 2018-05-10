@@ -63,9 +63,9 @@ class TraversingTest extends WordSpec with Matchers {
       val el1 = span.render
       val el2 = span.render
       val el3 = h1.render
-      val p1 = div(el1).render
-      val p2 = div(el2).render
-      val p3 = div(el3).render
+      div(el1).render
+      div(el2).render
+      div(el3).render
 
       val selection = jQ(el1, el2, el3)
       selection.parent().filter("div").length should be(3)
@@ -89,7 +89,7 @@ class TraversingTest extends WordSpec with Matchers {
       val el1 = span.render
       val el2 = span.render
       val el3 = h1.render
-      val d = div(el1, el2, el3).render
+      div(el1, el2, el3).render
 
       val selection = jQ(el1, el2, el3)
       selection.parent().filter("div").length should be(1)

@@ -1,12 +1,11 @@
 package io.udash.demos.jquery.views.functions
 
 import io.udash._
-import io.udash.demos.jquery.{IndexState, OffsetPositionState}
+import io.udash.demos.jquery.OffsetPositionState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
-import org.scalajs.dom.{Element, Event}
 
-object OffsetPositionViewPresenter extends DefaultViewPresenterFactory[OffsetPositionState.type](() => new OffsetPositionView)
+object OffsetPositionViewPresenter extends StaticViewFactory[OffsetPositionState.type](() => new OffsetPositionView)
 
 /** Based on examples from: <a href="http://api.jquery.com/position/">jQuery Docs</a>. */
 class OffsetPositionView extends FunctionView {

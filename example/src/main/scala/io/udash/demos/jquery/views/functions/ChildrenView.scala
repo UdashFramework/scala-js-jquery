@@ -5,7 +5,7 @@ import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object ChildrenViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new ChildrenView)
+object ChildrenViewPresenter extends StaticViewFactory[IndexState.type](() => new ChildrenView)
 
 /** Based on examples from: <a href="http://api.jquery.com/children/">jQuery Docs</a>. */
 class ChildrenView extends FunctionView {

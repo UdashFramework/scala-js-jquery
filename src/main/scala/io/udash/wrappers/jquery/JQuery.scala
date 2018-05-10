@@ -3,10 +3,9 @@ package io.udash.wrappers.jquery
 import org.scalajs.dom._
 
 import scala.collection.mutable
-import scala.concurrent.duration.Duration
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
-import scala.scalajs.js.{Dictionary, ThisFunction1, UndefOr, |}
+import scala.scalajs.js.{ThisFunction1, UndefOr, |}
 
 @js.native
 trait JQuery extends js.Object {
@@ -62,10 +61,12 @@ trait JQuery extends js.Object {
 
   /** Trigger blur event on an element. <br/>
     * See: <a href="http://api.jquery.com/blur/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def blur(): JQuery = js.native
 
   /** Trigger change event on an element. <br/>
     * See: <a href="http://api.jquery.com/change/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def change(): JQuery = js.native
 
   /** Get the children of each element in the set of matched elements. <br/>
@@ -86,6 +87,7 @@ trait JQuery extends js.Object {
 
   /** Trigger click event on an element. <br/>
     * See: <a href="http://api.jquery.com/click/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def click(): JQuery = js.native
 
   /** Create a deep copy of the set of matched elements. <br/>
@@ -94,11 +96,11 @@ trait JQuery extends js.Object {
 
   /** For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree. <br/>
     * See: <a href="http://api.jquery.com/closest/">jQuery Docs</a> */
-  def closest(selector: String | Element | JQuery): JQuery = js.native
+  def closest(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree. <br/>
     * See: <a href="http://api.jquery.com/closest/">jQuery Docs</a> */
-  def closest(selector: String, context: Element): JQuery = js.native
+  def closest(selector: Selector, context: Element): JQuery = js.native
 
   /** Get the children of each element in the set of matched elements, including text and comment nodes. <br/>
     * See: <a href="http://api.jquery.com/contents/">jQuery Docs</a> */
@@ -107,6 +109,7 @@ trait JQuery extends js.Object {
   /** Trigger contextmenu event on an element. <br/>
     * See: <a href="http://api.jquery.com/contextmenu/">jQuery Docs</a> */
   @JSName("contextmenu")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def contextMenu(): JQuery = js.native
 
   /** Get the computed style properties for the first element in the set of matched elements. <br/>
@@ -128,6 +131,7 @@ trait JQuery extends js.Object {
   /** Trigger dblclick event on an element. <br/>
     * See: <a href="http://api.jquery.com/dblclick/">jQuery Docs</a> */
   @JSName("dblclick")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def dblClick(): JQuery = js.native
 
   /** Set a timer to delay execution of subsequent items in the queue. <br/>
@@ -190,7 +194,7 @@ trait JQuery extends js.Object {
 
   /** Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element. <br/>
     * See: <a href="http://api.jquery.com/find/">jQuery Docs</a> */
-  def find(selector: String | Element | JQuery): JQuery = js.native
+  def find(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements. <br/>
     * See: <a href="http://api.jquery.com/finish/">jQuery Docs</a> */
@@ -202,21 +206,24 @@ trait JQuery extends js.Object {
 
   /** Trigger focus event on an element. <br/>
     * See: <a href="http://api.jquery.com/focus/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def focus(): JQuery = js.native
 
   /** Trigger focusin event on an element. <br/>
     * See: <a href="http://api.jquery.com/focusin/">jQuery Docs</a> */
   @JSName("focusin")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def focusIn(): JQuery = js.native
 
   /** Trigger focusout event on an element. <br/>
     * See: <a href="http://api.jquery.com/focusout/">jQuery Docs</a> */
   @JSName("focusout")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def focusOut(): JQuery = js.native
 
   /** Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element. <br/>
     * See: <a href="http://api.jquery.com/has/">jQuery Docs</a> */
-  def has(selector: String | Element): JQuery = js.native
+  def has(selector: Selector | Element): JQuery = js.native
 
   /** Determine whether any of the matched elements are assigned the given class. <br/>
     * See: <a href="http://api.jquery.com/hasClass/">jQuery Docs</a> */
@@ -268,15 +275,15 @@ trait JQuery extends js.Object {
 
   /** Insert every element in the set of matched elements after the target. <br/>
     * See: <a href="http://api.jquery.com/insertAfter/">jQuery Docs</a> */
-  def insertAfter(selector: String | Element | JQuery): JQuery = js.native
+  def insertAfter(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Insert every element in the set of matched elements before the target. <br/>
     * See: <a href="http://api.jquery.com/insertBefore/">jQuery Docs</a> */
-  def insertBefore(selector: String | Element | JQuery): JQuery = js.native
+  def insertBefore(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments. <br/>
     * See: <a href="http://api.jquery.com/is/">jQuery Docs</a> */
-  def is(selector: String | Element | JQuery): Boolean = js.native
+  def is(selector: Selector | Element | JQuery): Boolean = js.native
 
   /** A string containing the jQuery version number. <br/>
     * See: <a href="http://api.jquery.com/jquery/">jQuery Docs</a> */
@@ -285,16 +292,19 @@ trait JQuery extends js.Object {
   /** Trigger keydown event on an element. <br/>
     * See: <a href="http://api.jquery.com/keydown/">jQuery Docs</a> */
   @JSName("keydown")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def keyDown(): JQuery = js.native
 
   /** Trigger keypress event on an element. <br/>
     * See: <a href="http://api.jquery.com/keypress/">jQuery Docs</a> */
   @JSName("keypress")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def keyPress(): JQuery = js.native
 
   /** Trigger keyup event on an element. <br/>
     * See: <a href="http://api.jquery.com/keyup/">jQuery Docs</a> */
   @JSName("keyup")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def keyUp(): JQuery = js.native
 
   /** Reduce the set of matched elements to the final one in the set. <br/>
@@ -312,36 +322,43 @@ trait JQuery extends js.Object {
   /** Trigger mousedown event on an element. <br/>
     * See: <a href="http://api.jquery.com/mousedown/">jQuery Docs</a> */
   @JSName("mousedown")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseDown(): JQuery = js.native
 
   /** Trigger mouseenter event on an element. <br/>
     * See: <a href="http://api.jquery.com/mouseenter/">jQuery Docs</a> */
   @JSName("mouseenter")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseEnter(): JQuery = js.native
 
   /** Trigger mouseleave event on an element. <br/>
     * See: <a href="http://api.jquery.com/mouseleave/">jQuery Docs</a> */
   @JSName("mouseleave")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseLeave(): JQuery = js.native
 
   /** Trigger mousemove event on an element. <br/>
     * See: <a href="http://api.jquery.com/mousemove/">jQuery Docs</a> */
   @JSName("mousemove")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseMove(): JQuery = js.native
 
   /** Trigger mouseout event on an element. <br/>
     * See: <a href="http://api.jquery.com/mouseout/">jQuery Docs</a> */
   @JSName("mouseout")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseOut(): JQuery = js.native
 
   /** Trigger mouseover event on an element. <br/>
     * See: <a href="http://api.jquery.com/mouseover/">jQuery Docs</a> */
   @JSName("mouseover")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseOver(): JQuery = js.native
 
   /** Trigger mouseup event on an element. <br/>
     * See: <a href="http://api.jquery.com/mouseup/">jQuery Docs</a> */
   @JSName("mouseup")
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def mouseUp(): JQuery = js.native
 
   /** Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector. <br/>
@@ -358,7 +375,7 @@ trait JQuery extends js.Object {
 
   /** Remove elements from the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/not/">jQuery Docs</a> */
-  def not(selector: String | JQuery): JQuery = js.native
+  def not(selector: Selector | JQuery): JQuery = js.native
 
   /** Remove elements from the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/not/">jQuery Docs</a> */
@@ -374,7 +391,7 @@ trait JQuery extends js.Object {
 
   /** Remove an event handler. <br/>
     * See: <a href="http://api.jquery.com/off/">jQuery Docs</a> */
-  def off(jEvent: JQueryEvent, selector: String = js.native): JQuery = js.native
+  def off(jEvent: JQueryEvent, selector: Selector = js.native): JQuery = js.native
 
   /** Get the closest ancestor element that is positioned. <br/>
     * See: <a href="http://api.jquery.com/offsetParent/">jQuery Docs</a> */
@@ -470,10 +487,12 @@ trait JQuery extends js.Object {
 
   /** Trigger resize event on an element. <br/>
     * See: <a href="http://api.jquery.com/resize/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def resize(): JQuery = js.native
 
   /** Trigger scroll event on an element. <br/>
     * See: <a href="http://api.jquery.com/scroll/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def scroll(): JQuery = js.native
 
   /** Get the current horizontal position of the scroll bar for the first element in the set of matched elements. <br/>
@@ -494,6 +513,7 @@ trait JQuery extends js.Object {
 
   /** Trigger select event on an element. <br/>
     * See: <a href="http://api.jquery.com/select/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def select(): JQuery = js.native
 
   /** Encode a set of form elements as a string for submission. <br/>
@@ -510,7 +530,7 @@ trait JQuery extends js.Object {
 
   /** Get the siblings of each element in the set of matched elements, optionally filtered by a selector. <br/>
     * See: <a href="http://api.jquery.com/siblings/">jQuery Docs</a> */
-  def siblings(selector: String = js.native): JQuery = js.native
+  def siblings(selector: Selector = js.native): JQuery = js.native
 
   /** Reduce the set of matched elements to a subset specified by a range of indices. Including `start`, without `end`. <br/>
     * See: <a href="http://api.jquery.com/slice/">jQuery Docs</a> */
@@ -534,6 +554,7 @@ trait JQuery extends js.Object {
 
   /** Trigger submit event on an element. <br/>
     * See: <a href="http://api.jquery.com/submit/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def submit(): JQuery = js.native
 
   /** Get the combined text contents of each element in the set of matched elements, including their descendants. <br/>
@@ -562,11 +583,11 @@ trait JQuery extends js.Object {
 
   /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
     * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-  def trigger(event: String | JQueryEvent): JQuery = js.native
+  def trigger(event: EventName | JQueryEvent): JQuery = js.native
 
   /** Execute all handlers attached to an element for an event. <br/>
     * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-  def triggerHandler(event: String | JQueryEvent): JQuery = js.native
+  def triggerHandler(event: EventName | JQueryEvent): JQuery = js.native
 
   /** Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place. <br/>
     * See: <a href="http://api.jquery.com/unwrap/">jQuery Docs</a> */
@@ -608,15 +629,15 @@ object JQuery {
     def unregister(): Unit
   }
 
-  case class CallbackParameters(once: Boolean, selector: String, data: js.Any)
-  case class CallbackRegistrationRef(event: String, callback: JQueryCallback, registration: CallbackRegistration)
+  case class CallbackParameters(once: Boolean, selector: Selector, data: js.Any)
+  case class CallbackRegistrationRef(event: EventName, callback: JQueryCallback, registration: CallbackRegistration)
 
   private val registrations: mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]] = mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]]()
 
   implicit class JQueryWrapper(private val jquery: JQuery) {
     import js.JSConverters._
 
-    class OnCallbackRegistration(event: String, callback: JQueryCallback,
+    class OnCallbackRegistration(event: EventName, callback: JQueryCallback,
                                  reg: (ThisFunction1[Element, JQueryEvent, Any]) => Any,
                                  unreg: (String, ThisFunction1[Element, JQueryEvent, Any]) => js.Any = (event, c) => jquery.asInstanceOf[js.Dynamic].off(event, c))
       extends CallbackRegistration {
@@ -625,6 +646,11 @@ object JQuery {
 
       override def unregister(): Unit = unreg(event, c)
     }
+
+    /** Adds the specified class(es) to each element in the set of matched elements. <br/>
+      * See: <a href="http://api.jquery.com/addClass/">jQuery Docs</a> */
+    def addClass(classNames: Seq[String]): JQuery =
+      jquery.asInstanceOf[js.Dynamic].addClass(classNames.toJSArray).asInstanceOf[JQuery]
 
     /** Adds the specified class(es) to each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/addClass/">jQuery Docs</a> */
@@ -673,34 +699,42 @@ object JQuery {
 
     /** Bind an event handler to the "blur" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/blur/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def blur(callback: JQueryCallback): JQuery = on("blur", callback)
 
     /** Bind an event handler to the "blur" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/blur/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def blur(data: js.Any, callback: JQueryCallback): JQuery = on("blur", data, callback)
 
     /** Bind an event handler to the "change" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/blur/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def change(callback: JQueryCallback): JQuery = on("change", callback)
 
     /** Bind an event handler to the "change" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/blur/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def change(data: js.Any, callback: JQueryCallback): JQuery = on("change", data, callback)
 
     /** Bind an event handler to the "click" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/click/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def click(callback: JQueryCallback): JQuery = on("click", callback)
 
     /** Bind an event handler to the "click" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/click/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def click(data: js.Any, callback: JQueryCallback): JQuery = on("click", data, callback)
 
     /** Bind an event handler to the "contextmenu" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/contextmenu/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def contextMenu(callback: JQueryCallback): JQuery = on("contextmenu", callback)
 
     /** Bind an event handler to the "contextmenu" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/contextmenu/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def contextMenu(data: js.Any, callback: JQueryCallback): JQuery = on("contextmenu", data, callback)
 
     /** Set one or more CSS properties for the set of matched elements. <br/>
@@ -725,10 +759,12 @@ object JQuery {
 
     /** Bind an event handler to the "dblclick" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/dblclick/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def dblClick(callback: JQueryCallback): JQuery = on("dblclick", callback)
 
     /** Bind an event handler to the "dblclick" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/dblclick/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def dblClick(data: js.Any, callback: JQueryCallback): JQuery = on("dblclick", data, callback)
 
     /** Iterate over a jQuery object, executing a function for each matched element. <br/>
@@ -793,26 +829,32 @@ object JQuery {
 
     /** Bind an event handler to the "focus" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focus/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focus(callback: JQueryCallback): JQuery = on("focus", callback)
 
     /** Bind an event handler to the "focus" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focus/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focus(data: js.Any, callback: JQueryCallback): JQuery = on("focus", data, callback)
 
     /** Bind an event handler to the "focusIn" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focusIn/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focusIn(callback: JQueryCallback): JQuery = on("focusin", callback)
 
     /** Bind an event handler to the "focusIn" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focusIn/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focusIn(data: js.Any, callback: JQueryCallback): JQuery = on("focusin", data, callback)
 
     /** Bind an event handler to the "focusOut" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focusOut/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focusOut(callback: JQueryCallback): JQuery = on("focusout", callback)
 
     /** Bind an event handler to the "focusOut" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/focusOut/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def focusOut(data: js.Any, callback: JQueryCallback): JQuery = on("focusout", data, callback)
 
     /** Retrieve one of the elements matched by the jQuery object. <br/>
@@ -843,8 +885,8 @@ object JQuery {
     /** Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements. <br/>
       * See: <a href="http://api.jquery.com/hover/">jQuery Docs</a> */
     def hover(handlerIn: (Element) => Any, handlerOut: (Element) => Any): JQuery = {
-      mouseEnter((el, _) => handlerIn(el))
-      mouseLeave((el, _) => handlerOut(el))
+      on("mouseenter", (el, _) => handlerIn(el))
+      on("mouseleave", (el, _) => handlerOut(el))
       jquery
     }
 
@@ -869,26 +911,32 @@ object JQuery {
 
     /** Bind an event handler to the "keydown" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keydown/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyDown(callback: JQueryCallback): JQuery = on("keydown", callback)
 
     /** Bind an event handler to the "keydown" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keydown/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyDown(data: js.Any, callback: JQueryCallback): JQuery = on("keydown", data, callback)
 
     /** Bind an event handler to the "keypress" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keypress/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyPress(callback: JQueryCallback): JQuery = on("keypress", callback)
 
     /** Bind an event handler to the "keypress" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keypress/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyPress(data: js.Any, callback: JQueryCallback): JQuery = on("keypress", data, callback)
 
     /** Bind an event handler to the "keyup" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keyup/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyUp(callback: JQueryCallback): JQuery = on("keyup", callback)
 
     /** Bind an event handler to the "keyup" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/keyup/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def keyUp(data: js.Any, callback: JQueryCallback): JQuery = on("keyup", data, callback)
 
     /** Load data from the server and place the returned HTML into the matched element. <br/>
@@ -903,58 +951,72 @@ object JQuery {
 
     /** Bind an event handler to the "mousedown" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mousedown/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseDown(callback: JQueryCallback): JQuery = on("mousedown", callback)
 
     /** Bind an event handler to the "mousedown" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mousedown/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseDown(data: js.Any, callback: JQueryCallback): JQuery = on("mousedown", data, callback)
 
     /** Bind an event handler to the "mouseenter" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseenter/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseEnter(callback: JQueryCallback): JQuery = on("mouseenter", callback)
 
     /** Bind an event handler to the "mouseenter" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseenter/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseEnter(data: js.Any, callback: JQueryCallback): JQuery = on("mouseenter", data, callback)
 
     /** Bind an event handler to the "mouseleave" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseleave/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseLeave(callback: JQueryCallback): JQuery = on("mouseleave", callback)
 
     /** Bind an event handler to the "mouseleave" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseleave/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseLeave(data: js.Any, callback: JQueryCallback): JQuery = on("mouseleave", data, callback)
 
     /** Bind an event handler to the "mousemove" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mousemove/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseMove(callback: JQueryCallback): JQuery = on("mousemove", callback)
 
     /** Bind an event handler to the "mousemove" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mousemove/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseMove(data: js.Any, callback: JQueryCallback): JQuery = on("mousemove", data, callback)
 
     /** Bind an event handler to the "mouseout" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseout/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseOut(callback: JQueryCallback): JQuery = on("mouseout", callback)
 
     /** Bind an event handler to the "mouseout" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseout/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseOut(data: js.Any, callback: JQueryCallback): JQuery = on("mouseout", data, callback)
 
     /** Bind an event handler to the "mouseover" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseover/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseOver(callback: JQueryCallback): JQuery = on("mouseover", callback)
 
     /** Bind an event handler to the "mouseover" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseover/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseOver(data: js.Any, callback: JQueryCallback): JQuery = on("mouseover", data, callback)
 
     /** Bind an event handler to the "mouseup" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseup/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseUp(callback: JQueryCallback): JQuery = on("mouseup", callback)
 
     /** Bind an event handler to the "mouseup" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/mouseup/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def mouseUp(data: js.Any, callback: JQueryCallback): JQuery = on("mouseup", data, callback)
 
     /** Remove elements from the set of matched elements. <br/>
@@ -976,63 +1038,63 @@ object JQuery {
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, null, null))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, null, data))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, selector: String, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, selector: Selector, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, selector, null))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, selector: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, selector: Selector, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, selector, data))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, null, null))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, null, data))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, selector: String, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, selector: Selector, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, selector, null))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, selector: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, selector: Selector, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, selector, data))
       jquery
     }
 
     /** Remove an event handler. <br/>
       * See: <a href="http://api.jquery.com/off/">jQuery Docs</a> */
-    def off(event: String, callback: JQueryCallback): JQuery = {
+    def off(event: EventName, callback: JQueryCallback): JQuery = {
       jquery.asInstanceOf[js.Dynamic].toArray().asInstanceOf[js.Array[Element]]
         .foreach( el => {
           if (registrations.contains(el)) {
@@ -1052,7 +1114,7 @@ object JQuery {
       jquery
     }
 
-    private def separateCallbacks(event: String, callback: JQueryCallback, params: CallbackParameters): Unit = {
+    private def separateCallbacks(event: EventName, callback: JQueryCallback, params: CallbackParameters): Unit = {
 
       type ThisFunctionCallback = ThisFunction1[Element, JQueryEvent, Any]
 
@@ -1074,7 +1136,7 @@ object JQuery {
       }))
     }
 
-    private def collectRegistration(event: String, callback: JQueryCallback, el: Element, index: Int, params: CallbackParameters, reg: CallbackRegistration) = {
+    private def collectRegistration(event: EventName, callback: JQueryCallback, el: Element, index: Int, params: CallbackParameters, reg: CallbackRegistration) = {
       val jqueryRegs: mutable.Buffer[CallbackRegistrationRef] = registrations.getOrElse(el, mutable.Buffer[CallbackRegistrationRef]())
       jqueryRegs += CallbackRegistrationRef(event, callback, reg)
       registrations.update(el, jqueryRegs)
@@ -1130,6 +1192,11 @@ object JQuery {
 
     /** Remove a single class, multiple classes, or all classes from each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/removeClass/">jQuery Docs</a> */
+    def removeClass(classNames: Seq[String]): JQuery =
+      jquery.asInstanceOf[js.Dynamic].removeClass(classNames.toJSArray).asInstanceOf[JQuery]
+
+    /** Remove a single class, multiple classes, or all classes from each element in the set of matched elements. <br/>
+      * See: <a href="http://api.jquery.com/removeClass/">jQuery Docs</a> */
     def removeClass(function: (Int, String) => String): JQuery =
       jquery.asInstanceOf[js.Dynamic].removeClass(function).asInstanceOf[JQuery]
 
@@ -1140,26 +1207,32 @@ object JQuery {
 
     /** Bind an event handler to the "resize" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/resize/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def resize(callback: JQueryCallback): JQuery = on("resize", callback)
 
     /** Bind an event handler to the "resize" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/resize/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def resize(data: js.Any, callback: JQueryCallback): JQuery = on("resize", data, callback)
 
     /** Bind an event handler to the "scroll" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/scroll/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def scroll(callback: JQueryCallback): JQuery = on("scroll", callback)
 
     /** Bind an event handler to the "scroll" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/scroll/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def scroll(data: js.Any, callback: JQueryCallback): JQuery = on("scroll", data, callback)
 
     /** Bind an event handler to the "select" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/select/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def select(callback: JQueryCallback): JQuery = on("select", callback)
 
     /** Bind an event handler to the "select" JavaScript event on an element. <br/>
       * See: <a href="http://api.jquery.com/select/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def select(data: js.Any, callback: JQueryCallback): JQuery = on("select", data, callback)
 
     /** Display the matched elements. <br/>
@@ -1204,10 +1277,12 @@ object JQuery {
 
     /** Trigger submit event on an element. <br/>
       * See: <a href="http://api.jquery.com/submit/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def submit(callback: JQueryCallback): JQuery = on("submit", callback)
 
     /** Trigger submit event on an element. <br/>
       * See: <a href="http://api.jquery.com/submit/">jQuery Docs</a> */
+    @deprecated("Since jQuery 3.3.0", "1.2.0")
     def submit(data: js.Any, callback: JQueryCallback): JQuery = on("submit", data, callback)
 
     /** Set the content of each element in the set of matched elements to the specified text. <br/>
@@ -1232,6 +1307,11 @@ object JQuery {
 
     /** Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument. <br/>
       * See: <a href="http://api.jquery.com/toggleClass/">jQuery Docs</a> */
+    def toggleClass(classNames: Seq[String]): JQuery =
+      jquery.asInstanceOf[js.Dynamic].toggleClass(classNames.toJSArray).asInstanceOf[JQuery]
+
+    /** Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument. <br/>
+      * See: <a href="http://api.jquery.com/toggleClass/">jQuery Docs</a> */
     def toggleClass(function: (Int, String, Boolean) => String): JQuery =
       jquery.asInstanceOf[js.Dynamic].toggleClass(function).asInstanceOf[JQuery]
 
@@ -1242,22 +1322,22 @@ object JQuery {
 
     /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
       * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-    def trigger(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+    def trigger(event: EventName | JQueryEvent, extraParams: Map[String, Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
     /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
       * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-    def trigger(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+    def trigger(event: EventName | JQueryEvent, extraParams: Seq[Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
     /** Execute all handlers attached to an element for an event. <br/>
       * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-    def triggerHandler(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+    def triggerHandler(event: EventName | JQueryEvent, extraParams: Map[String, Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
     /** Execute all handlers attached to an element for an event. <br/>
       * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-    def triggerHandler(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+    def triggerHandler(event: EventName | JQueryEvent, extraParams: Seq[Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
     /** Set the value of each element in the set of matched elements. <br/>
