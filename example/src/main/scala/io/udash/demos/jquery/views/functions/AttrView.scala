@@ -40,7 +40,7 @@ class AttrView extends FunctionView {
   ).render
 
   override protected val script = () => {
-    jQ(".demo input").on("change", (input: Element, _: JQueryEvent) => {
+    jQ(".demo input").on(EventName.change, (input: Element, _: JQueryEvent) => {
       jQ(".demo p").html(
         s""".attr('data-checked'): ${jQ(input).attr("data-checked")}<br/>
            |.prop('checked'): ${jQ(input).prop("checked")}<br/>

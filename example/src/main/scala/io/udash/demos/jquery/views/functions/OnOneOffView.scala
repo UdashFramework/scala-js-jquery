@@ -26,8 +26,8 @@ class OnOneOffView extends FunctionView {
       disabled := "disabled",
       onclick :+= ((_: Event) => {
         jQ(".demo #click")
-          .off("click", onCallback)
-          .off("click", oneCallback)
+          .off(EventName.click, onCallback)
+          .off(EventName.click, oneCallback)
         false
       })
     )("Off")
@@ -35,8 +35,8 @@ class OnOneOffView extends FunctionView {
 
   override protected val script = () => {
     jQ(".demo #click")
-      .on("click", onCallback)
-      .one("click", oneCallback)
+      .on(EventName.click, onCallback)
+      .one(EventName.click, oneCallback)
 
     jQ(".demo button")
       .prop("disabled", "")

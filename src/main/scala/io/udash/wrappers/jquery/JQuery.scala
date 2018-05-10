@@ -96,11 +96,11 @@ trait JQuery extends js.Object {
 
   /** For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree. <br/>
     * See: <a href="http://api.jquery.com/closest/">jQuery Docs</a> */
-  def closest(selector: String | Element | JQuery): JQuery = js.native
+  def closest(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree. <br/>
     * See: <a href="http://api.jquery.com/closest/">jQuery Docs</a> */
-  def closest(selector: String, context: Element): JQuery = js.native
+  def closest(selector: Selector, context: Element): JQuery = js.native
 
   /** Get the children of each element in the set of matched elements, including text and comment nodes. <br/>
     * See: <a href="http://api.jquery.com/contents/">jQuery Docs</a> */
@@ -194,7 +194,7 @@ trait JQuery extends js.Object {
 
   /** Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element. <br/>
     * See: <a href="http://api.jquery.com/find/">jQuery Docs</a> */
-  def find(selector: String | Element | JQuery): JQuery = js.native
+  def find(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements. <br/>
     * See: <a href="http://api.jquery.com/finish/">jQuery Docs</a> */
@@ -223,7 +223,7 @@ trait JQuery extends js.Object {
 
   /** Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element. <br/>
     * See: <a href="http://api.jquery.com/has/">jQuery Docs</a> */
-  def has(selector: String | Element): JQuery = js.native
+  def has(selector: Selector | Element): JQuery = js.native
 
   /** Determine whether any of the matched elements are assigned the given class. <br/>
     * See: <a href="http://api.jquery.com/hasClass/">jQuery Docs</a> */
@@ -275,15 +275,15 @@ trait JQuery extends js.Object {
 
   /** Insert every element in the set of matched elements after the target. <br/>
     * See: <a href="http://api.jquery.com/insertAfter/">jQuery Docs</a> */
-  def insertAfter(selector: String | Element | JQuery): JQuery = js.native
+  def insertAfter(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Insert every element in the set of matched elements before the target. <br/>
     * See: <a href="http://api.jquery.com/insertBefore/">jQuery Docs</a> */
-  def insertBefore(selector: String | Element | JQuery): JQuery = js.native
+  def insertBefore(selector: Selector | Element | JQuery): JQuery = js.native
 
   /** Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments. <br/>
     * See: <a href="http://api.jquery.com/is/">jQuery Docs</a> */
-  def is(selector: String | Element | JQuery): Boolean = js.native
+  def is(selector: Selector | Element | JQuery): Boolean = js.native
 
   /** A string containing the jQuery version number. <br/>
     * See: <a href="http://api.jquery.com/jquery/">jQuery Docs</a> */
@@ -375,7 +375,7 @@ trait JQuery extends js.Object {
 
   /** Remove elements from the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/not/">jQuery Docs</a> */
-  def not(selector: String | JQuery): JQuery = js.native
+  def not(selector: Selector | JQuery): JQuery = js.native
 
   /** Remove elements from the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/not/">jQuery Docs</a> */
@@ -391,7 +391,7 @@ trait JQuery extends js.Object {
 
   /** Remove an event handler. <br/>
     * See: <a href="http://api.jquery.com/off/">jQuery Docs</a> */
-  def off(jEvent: JQueryEvent, selector: String = js.native): JQuery = js.native
+  def off(jEvent: JQueryEvent, selector: Selector = js.native): JQuery = js.native
 
   /** Get the closest ancestor element that is positioned. <br/>
     * See: <a href="http://api.jquery.com/offsetParent/">jQuery Docs</a> */
@@ -530,7 +530,7 @@ trait JQuery extends js.Object {
 
   /** Get the siblings of each element in the set of matched elements, optionally filtered by a selector. <br/>
     * See: <a href="http://api.jquery.com/siblings/">jQuery Docs</a> */
-  def siblings(selector: String = js.native): JQuery = js.native
+  def siblings(selector: Selector = js.native): JQuery = js.native
 
   /** Reduce the set of matched elements to a subset specified by a range of indices. Including `start`, without `end`. <br/>
     * See: <a href="http://api.jquery.com/slice/">jQuery Docs</a> */
@@ -583,11 +583,11 @@ trait JQuery extends js.Object {
 
   /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
     * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-  def trigger(event: String | JQueryEvent): JQuery = js.native
+  def trigger(event: EventName | JQueryEvent): JQuery = js.native
 
   /** Execute all handlers attached to an element for an event. <br/>
     * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-  def triggerHandler(event: String | JQueryEvent): JQuery = js.native
+  def triggerHandler(event: EventName | JQueryEvent): JQuery = js.native
 
   /** Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place. <br/>
     * See: <a href="http://api.jquery.com/unwrap/">jQuery Docs</a> */
@@ -629,15 +629,15 @@ object JQuery {
     def unregister(): Unit
   }
 
-  case class CallbackParameters(once: Boolean, selector: String, data: js.Any)
-  case class CallbackRegistrationRef(event: String, callback: JQueryCallback, registration: CallbackRegistration)
+  case class CallbackParameters(once: Boolean, selector: Selector, data: js.Any)
+  case class CallbackRegistrationRef(event: EventName, callback: JQueryCallback, registration: CallbackRegistration)
 
   private val registrations: mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]] = mutable.Map[Element, mutable.Buffer[CallbackRegistrationRef]]()
 
   implicit class JQueryWrapper(private val jquery: JQuery) {
     import js.JSConverters._
 
-    class OnCallbackRegistration(event: String, callback: JQueryCallback,
+    class OnCallbackRegistration(event: EventName, callback: JQueryCallback,
                                  reg: (ThisFunction1[Element, JQueryEvent, Any]) => Any,
                                  unreg: (String, ThisFunction1[Element, JQueryEvent, Any]) => js.Any = (event, c) => jquery.asInstanceOf[js.Dynamic].off(event, c))
       extends CallbackRegistration {
@@ -1038,63 +1038,63 @@ object JQuery {
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, null, null))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, null, data))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, selector: String, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, selector: Selector, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, selector, null))
       jquery
     }
 
     /** Attach an event handler function for one or more events to the selected elements. <br/>
       * See: <a href="http://api.jquery.com/on/">jQuery Docs</a> */
-    def on(event: String, selector: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def on(event: EventName, selector: Selector, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(false, selector, data))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, null, null))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, null, data))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, selector: String, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, selector: Selector, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, selector, null))
       jquery
     }
 
     /** Attach a handler to an event for the elements. The handler is executed at most once per element per event type. <br/>
       * See: <a href="http://api.jquery.com/one/">jQuery Docs</a> */
-    def one(event: String, selector: String, data: js.Any, callback: JQueryCallback): JQuery = {
+    def one(event: EventName, selector: Selector, data: js.Any, callback: JQueryCallback): JQuery = {
       separateCallbacks(event, callback, new CallbackParameters(true, selector, data))
       jquery
     }
 
     /** Remove an event handler. <br/>
       * See: <a href="http://api.jquery.com/off/">jQuery Docs</a> */
-    def off(event: String, callback: JQueryCallback): JQuery = {
+    def off(event: EventName, callback: JQueryCallback): JQuery = {
       jquery.asInstanceOf[js.Dynamic].toArray().asInstanceOf[js.Array[Element]]
         .foreach( el => {
           if (registrations.contains(el)) {
@@ -1114,7 +1114,7 @@ object JQuery {
       jquery
     }
 
-    private def separateCallbacks(event: String, callback: JQueryCallback, params: CallbackParameters): Unit = {
+    private def separateCallbacks(event: EventName, callback: JQueryCallback, params: CallbackParameters): Unit = {
 
       type ThisFunctionCallback = ThisFunction1[Element, JQueryEvent, Any]
 
@@ -1136,7 +1136,7 @@ object JQuery {
       }))
     }
 
-    private def collectRegistration(event: String, callback: JQueryCallback, el: Element, index: Int, params: CallbackParameters, reg: CallbackRegistration) = {
+    private def collectRegistration(event: EventName, callback: JQueryCallback, el: Element, index: Int, params: CallbackParameters, reg: CallbackRegistration) = {
       val jqueryRegs: mutable.Buffer[CallbackRegistrationRef] = registrations.getOrElse(el, mutable.Buffer[CallbackRegistrationRef]())
       jqueryRegs += CallbackRegistrationRef(event, callback, reg)
       registrations.update(el, jqueryRegs)
@@ -1322,22 +1322,22 @@ object JQuery {
 
     /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
       * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-    def trigger(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+    def trigger(event: EventName | JQueryEvent, extraParams: Map[String, Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
     /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
       * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-    def trigger(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+    def trigger(event: EventName | JQueryEvent, extraParams: Seq[Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
     /** Execute all handlers attached to an element for an event. <br/>
       * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-    def triggerHandler(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+    def triggerHandler(event: EventName | JQueryEvent, extraParams: Map[String, Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
     /** Execute all handlers attached to an element for an event. <br/>
       * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-    def triggerHandler(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+    def triggerHandler(event: EventName | JQueryEvent, extraParams: Seq[Any]): JQuery =
       jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
     /** Set the value of each element in the set of matched elements. <br/>
