@@ -5,7 +5,7 @@ import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object HideShowViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new HideShowView)
+object HideShowViewPresenter extends StaticViewFactory[IndexState.type](() => new HideShowView)
 
 /** Based on examples from: <a href="http://api.jquery.com/hide/">jQuery Docs</a>. */
 class HideShowView extends FunctionView {

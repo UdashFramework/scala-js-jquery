@@ -2,13 +2,11 @@ package io.udash.demos.jquery.views
 
 import io.udash._
 import io.udash.demos.jquery._
-import org.scalajs.dom.Element
 
-object IndexViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new IndexView)
+object IndexViewPresenter extends StaticViewFactory[IndexState.type](() => new IndexView)
 
 class IndexView extends FinalView {
   import Context._
-
   import scalatags.JsDom.all._
 
   private val content = div(

@@ -2,8 +2,8 @@ import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 
 object Dependencies {
-  val udashCoreVersion = "0.5.0"
-  val udashJQueryVersion = "1.1.0"
+  val udashCoreVersion = "0.6.1"
+  val udashJQueryVersion = "1.2.0"
 
   val deps = Def.setting(Seq[ModuleID](
     "io.udash" %%% "udash-core-frontend" % udashCoreVersion,

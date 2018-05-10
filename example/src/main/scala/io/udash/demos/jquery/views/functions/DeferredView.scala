@@ -8,7 +8,7 @@ import org.scalajs.dom.Event
 
 import scala.scalajs.js
 
-object DeferredViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new DeferredView)
+object DeferredViewPresenter extends StaticViewFactory[IndexState.type](() => new DeferredView)
 
 /** Based on examples from: <a href="http://api.jquery.com/deferred/">jQuery Docs</a>. */
 class DeferredView extends FunctionView {

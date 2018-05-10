@@ -5,7 +5,7 @@ import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object AfterBeforeViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new AfterBeforeView)
+object AfterBeforeViewPresenter extends StaticViewFactory[IndexState.type](() => new AfterBeforeView)
 
 /** Based on examples from: <a href="http://api.jquery.com/after/">jQuery Docs</a>. */
 class AfterBeforeView extends FunctionView {

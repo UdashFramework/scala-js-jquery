@@ -108,10 +108,12 @@ trait JQueryStatic extends js.Object {
 
   /** Determine if the argument passed is a JavaScript function object. <br/>
     * See: <a href="http://api.jquery.com/jQuery.isFunction/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def isFunction[T](el: js.Any): Boolean = js.native
 
   /** Determines whether its argument is a number. <br/>
     * See: <a href="http://api.jquery.com/jQuery.isNumeric/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def isNumeric[T](el: js.Any): Boolean = js.native
 
   /** Check to see if an object is a plain object (created using "{}" or "new Object"). <br/>
@@ -120,6 +122,7 @@ trait JQueryStatic extends js.Object {
 
   /** Determine whether the argument is a window. <br/>
     * See: <a href="http://api.jquery.com/jQuery.isWindow/">jQuery Docs</a> */
+  @deprecated("Since jQuery 3.3.0", "1.2.0")
   def isWindow[T](el: js.Any): Boolean = js.native
 
   /** Check to see if a DOM node is within an XML document (or is an XML document). <br/>

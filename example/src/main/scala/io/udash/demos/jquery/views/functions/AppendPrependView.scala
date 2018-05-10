@@ -5,7 +5,7 @@ import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object AppendPrependViewPresenter extends DefaultViewPresenterFactory[IndexState.type](() => new AppendPrependView)
+object AppendPrependViewPresenter extends StaticViewFactory[IndexState.type](() => new AppendPrependView)
 
 /** Based on examples from: <a href="http://api.jquery.com/animate/">jQuery Docs</a>. */
 class AppendPrependView extends FunctionView {
