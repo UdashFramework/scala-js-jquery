@@ -397,17 +397,9 @@ trait JQuery extends js.Object {
     * See: <a href="http://api.jquery.com/offsetParent/">jQuery Docs</a> */
   def offsetParent(): JQuery = js.native
 
-  /** Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without "px") representation of the value or undef if called on an empty set of elements. <br/>
-    * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
-  def outerHeight(includeMargin: Boolean = js.native): Double = js.native
-
   /** Set the CSS outer Height of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
   def outerHeight(value: Int | Double | String): JQuery = js.native
-
-  /** Get the current computed width for the first element in the set of matched elements, including padding and border. <br/>
-    * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
-  def outerWidth(includeMargin: Boolean = js.native): Double = js.native
 
   /** Set the CSS outer width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
