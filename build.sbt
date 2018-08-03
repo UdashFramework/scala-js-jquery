@@ -63,6 +63,9 @@ libraryDependencies ++= Seq(
   "com.lihaoyi" %%% "scalatags" % "0.6.7" % Test
 )
 
+jsDependencies +=
+  "org.webjars" % "jquery" % "3.3.1" % Test / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
+
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(commonJSSettings)
