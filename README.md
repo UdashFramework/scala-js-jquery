@@ -4,10 +4,10 @@ Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) program
 
 ## Usage
 
-Add the following to your SBT build:
+Add the following dependency to your SBT build:
 
 ```scala
-libraryDependencies += "io.udash" %%% "udash-jquery" % "1.1.0"
+libraryDependencies += "io.udash" %%% "udash-jquery" % "2.0.0"
 ```
 
 then import the jQuery package: 
@@ -15,6 +15,21 @@ then import the jQuery package:
 ```scala
 import io.udash.wrappers.jquery._
 ```
+
+Since version `2.0.0` the wrapper does not force JS dependency on jQuery. You have to 
+add it manually by:
+ * explicit link in your `index.html`.
+ ```html
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+         crossorigin="anonymous"></script>
+ ```
+ * or a [Scala.js dependency](http://www.scala-js.org/doc/project/dependencies.html).
+ ```scala
+ jsDependencies +=
+   "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
+ ```
+ 
 
 ## Examples
 

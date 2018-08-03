@@ -1,9 +1,10 @@
 name := "jquery-demo"
 
 inThisBuild(Seq(
-  version := "1.2.0",
+  version := "2.0.0",
   organization := "io.udash",
   scalaVersion := "2.12.6",
+  crossScalaVersions := Seq("2.11.12", "2.12.6"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -31,6 +32,7 @@ val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
   .settings(
     libraryDependencies ++= Dependencies.deps.value,
+    jsDependencies ++= Dependencies.jsDeps.value,
 
     /* move these files out of target/. */
     Compile / fullOptJS / crossTarget := generatedDir,
