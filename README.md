@@ -24,7 +24,7 @@ add it manually by:
          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
          crossorigin="anonymous"></script>
  ```
- * [Scala.js dependency](http://www.scala-js.org/doc/project/dependencies.html).
+ * or a [Scala.js dependency](http://www.scala-js.org/doc/project/dependencies.html).
  ```scala
  jsDependencies +=
    "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
