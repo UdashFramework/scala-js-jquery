@@ -4,6 +4,7 @@ inThisBuild(Seq(
   version := "2.0.0",
   organization := "io.udash",
   scalaVersion := "2.12.6",
+  crossScalaVersions := Seq("2.11.12", "2.12.6"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
