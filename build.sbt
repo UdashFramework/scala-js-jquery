@@ -5,7 +5,7 @@ import org.scalajs.jsenv.selenium.SeleniumJSEnv
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "1.2.0",
+  version := "2.0.0",
   organization := "io.udash",
   scalaVersion := "2.12.6",
   crossScalaVersions := Seq("2.11.12", "2.12.6"),
@@ -58,13 +58,10 @@ val commonJSSettings = Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.9.5",
+  "org.scala-js" %%% "scalajs-dom" % "0.9.6",
   "org.scalatest" %%% "scalatest" % "3.0.5" % Test,
   "com.lihaoyi" %%% "scalatags" % "0.6.7" % Test
 )
-
-jsDependencies +=
-  "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
 
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
