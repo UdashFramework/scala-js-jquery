@@ -397,17 +397,9 @@ trait JQuery extends js.Object {
     * See: <a href="http://api.jquery.com/offsetParent/">jQuery Docs</a> */
   def offsetParent(): JQuery = js.native
 
-  /** Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without "px") representation of the value or null if called on an empty set of elements. <br/>
-    * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
-  def outerHeight(includeMargin: Boolean = js.native): Double = js.native
-
   /** Set the CSS outer Height of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
   def outerHeight(value: Int | Double | String): JQuery = js.native
-
-  /** Get the current computed width for the first element in the set of matched elements, including padding and border. <br/>
-    * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
-  def outerWidth(includeMargin: Boolean = js.native): Double = js.native
 
   /** Set the CSS outer width of each element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
@@ -1142,10 +1134,22 @@ object JQuery {
       registrations.update(el, jqueryRegs)
     }
 
+    /** Get the current computed height for the first element in the set of matched elements, including padding,
+      * border, and optionally margin. Returns a number (without "px") representation of the value or undef
+      * if called on an empty set of elements. <br/>
+      * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
+    def outerHeight(includeMargin: Boolean = false): Option[Double] =
+      jquery.asInstanceOf[js.Dynamic].outerHeight(includeMargin).asInstanceOf[UndefOr[Double]].toOption
+
     /** Set the CSS outer Height of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/outerHeight/">jQuery Docs</a> */
     def outerHeight(function: (Element, Int, Double) => Double): JQuery =
       jquery.asInstanceOf[js.Dynamic].outerHeight(js.ThisFunction.fromFunction3(function)).asInstanceOf[JQuery]
+
+    /** Get the current computed width for the first element in the set of matched elements, including padding and border. <br/>
+      * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
+    def outerWidth(includeMargin: Boolean = false): Option[Double] =
+      jquery.asInstanceOf[js.Dynamic].outerWidth(includeMargin).asInstanceOf[UndefOr[Double]].toOption
 
     /** Set the CSS outer width of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/outerWidth/">jQuery Docs</a> */
