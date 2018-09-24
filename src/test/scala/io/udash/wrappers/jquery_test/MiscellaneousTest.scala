@@ -43,6 +43,11 @@ class MiscellaneousTest extends WordSpec with Matchers {
       selection.index(jQ(el3)) should be(2)
       selection.index(el4) should be(-1)
     }
+
+    "serialize objects to URL query string" in {
+      import scala.scalajs.js, js.JSConverters._
+      jQ.param(js.Dynamic.literal("a" -> Seq(1, 2, 3).toJSArray, "b" -> "c")) should be("a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&b=c")
+    }
   }
 
 }

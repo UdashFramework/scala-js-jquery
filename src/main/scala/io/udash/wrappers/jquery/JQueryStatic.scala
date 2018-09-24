@@ -129,17 +129,23 @@ trait JQueryStatic extends js.Object {
     * See: <a href="http://api.jquery.com/jQuery.isXMLDoc/">jQuery Docs</a> */
   def isXMLDoc[T](el: js.Any): Boolean = js.native
 
+  /** Create a serialized representation of an array, a plain object, or a jQuery object suitable
+    * for use in a URL query string or Ajax request. In case a jQuery object is passed, it should
+    * contain input elements with name/value properties. <br/>
+    * See: <a href="http://api.jquery.com/jQuery.param/">jQuery Docs</a> */
+  def param(obj: js.Array[js.Any] | js.Object | JQuery, traditional: Boolean = js.native): String = js.native
+
   /** Parses a string into an array of DOM nodes. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.isXMLDoc/">jQuery Docs</a> */
+    * See: <a href="http://api.jquery.com/jQuery.parseHTML/">jQuery Docs</a> */
   def parseHTML(data: String, context: Element = js.native, keepScripts: Boolean = js.native): js.Array[Element] = js.native
 
   /** Takes a well-formed JSON string and returns the resulting JavaScript value. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.isXMLDoc/">jQuery Docs</a> */
+    * See: <a href="http://api.jquery.com/jQuery.parseJSON/">jQuery Docs</a> */
   @deprecated("Since all the browsers supported by jQuery 3.0 support the native JSON.parse() method, we are deprecating jQuery.parseJSON().", "1.1.0")
   def parseJSON(json: String): js.Any = js.native
 
   /** Parses a string into an XML document. <br/>
-    * See: <a href="http://api.jquery.com/jQuery.isXMLDoc/">jQuery Docs</a> */
+    * See: <a href="http://api.jquery.com/jQuery.parseXML/">jQuery Docs</a> */
   def parseXML(xml: String): js.Dynamic = js.native
 
   /** Load data from the server using a HTTP POST request. <br/>
