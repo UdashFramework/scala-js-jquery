@@ -5,7 +5,7 @@ import org.scalajs.jsenv.selenium.SeleniumJSEnv
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "2.0.0",
+  version := "2.0.1",
   organization := "io.udash",
   scalaVersion := "2.12.6",
   crossScalaVersions := Seq("2.11.12", "2.12.6"),
