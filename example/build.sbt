@@ -1,10 +1,10 @@
 name := "jquery-demo"
 
 inThisBuild(Seq(
-  version := "2.0.0",
+  version := "3.0.0",
   organization := "io.udash",
-  scalaVersion := "2.12.6",
-  crossScalaVersions := Seq("2.11.12", "2.12.6"),
+  scalaVersion := "2.12.7",
+  crossScalaVersions := Seq("2.11.12", "2.12.7"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -18,7 +18,7 @@ inThisBuild(Seq(
     "-Xlint:_",
   ),
   scalacOptions ++= {
-    if (CrossVersion.partialVersion((`jquery-demo` / scalaVersion).value).contains((2, 12))) Seq(
+    if (scalaBinaryVersion.value == "2.12") Seq(
       "-Ywarn-unused:_,-explicits,-implicits",
       "-Ybackend-parallelism", "4",
       "-Ycache-plugin-class-loader:last-modified",
@@ -28,6 +28,7 @@ inThisBuild(Seq(
 ))
 
 val generatedDir = file("generated")
+val compileStatics = taskKey[Unit]("Compiles all static files.")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
   .settings(
@@ -47,7 +48,7 @@ val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
 
     copyAssets := {
       IO.copyFile(
-        sourceDirectory.value / "main/assets/index.html",
+        sourceDirectory.value / "main/assets/index-global.html",
         generatedDir / "index.html"
       )
     },
@@ -60,4 +61,32 @@ val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
       (Compile / packageJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js",
     Compile / packageMinifiedJSDependencies / artifactPath :=
       (Compile / packageMinifiedJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js"
+  )
+
+val `jquery-bundler-demo` = project.in(file("."))
+  .enablePlugins(ScalaJSBundlerPlugin)
+  .settings(
+    libraryDependencies ++= Dependencies.deps.value,
+
+    Compile / scalaJSUseMainModuleInitializer := true,
+
+    copyAssets := {
+      IO.copyFile(
+        sourceDirectory.value / "main/assets/index-bundler.html",
+        generatedDir / "index.html"
+      )
+    },
+
+    compileStatics := {
+      val sjsFileName = (Compile / fastOptJS).value.data.name.stripSuffix(".js")
+      IO.copyFile(
+        (Compile / npmUpdate / crossTarget).value / s"$sjsFileName-bundle.js",
+        generatedDir / "scripts/frontend.js"
+      )
+      IO.copyFile(
+        (Compile / npmUpdate / crossTarget).value / s"$sjsFileName-bundle.js.map",
+        generatedDir / "scripts/frontend.js.map"
+      )
+    },
+    compileStatics := compileStatics.dependsOn(Compile / fastOptJS / webpack, copyAssets).value,
   )
