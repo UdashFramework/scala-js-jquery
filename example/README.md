@@ -1,5 +1,5 @@
 The `build.sbt` file contains two configurations:
-* `jquery-demo` uses global jQuery dependency.
+* `jquery-global-demo` uses global jQuery dependency.
 * `jquery-bundler-demo` uses `ScalaJSBundlerPlugin` in order to manage module dependencies. 
 
 ### How to use?

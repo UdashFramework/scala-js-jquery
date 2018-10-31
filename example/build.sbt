@@ -34,13 +34,15 @@ val commonSettings = Seq(
 
 val generatedGlobalDir = file("generated/global")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
-val root = project.in(file(".")).enablePlugins(ScalaJSPlugin)
+val root = project.in(file("."))
+  .enablePlugins(ScalaJSPlugin)
   .settings(commonSettings)
 
-val `jquery-global-demo` = project.in(file("global-demo")).enablePlugins(ScalaJSPlugin)
+val `jquery-global-demo` = project.in(file("global-demo"))
+  .enablePlugins(ScalaJSPlugin)
   .settings(
     commonSettings,
-    
+
     jsDependencies ++= Dependencies.jsDeps.value,
 
     sourceDirsSettings(_.getParentFile),
