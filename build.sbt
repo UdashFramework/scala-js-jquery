@@ -5,6 +5,9 @@ name := "udash-jquery"
 inThisBuild(Seq(
   version := "3.0.0-SNAPSHOT",
   organization := "io.udash",
+))
+
+val commonSettings = Seq(
   scalaVersion := "2.12.7",
   crossScalaVersions := Seq("2.11.12", "2.12.7"),
   scalacOptions ++= Seq(
@@ -28,13 +31,13 @@ inThisBuild(Seq(
       "-Ycache-macro-class-loader:last-modified"
     ) else Seq.empty
   }
-))
+)
 
 val commonJSSettings = Seq(
   Compile / emitSourceMaps := true,
   Test / parallelExecution := false,
   Test / scalaJSStage := FastOptStage,
-  // ScalaJSBundlerPlugin does not work with scalajs-env-selenium: 
+  // ScalaJSBundlerPlugin does not work with scalajs-env-selenium:
   // https://github.com/scalacenter/scalajs-bundler/issues/89
   // Test / jsEnv := new SeleniumJSEnv(browserCapabilities),
   scalacOptions += {
@@ -48,6 +51,7 @@ val commonJSSettings = Seq(
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
+    commonSettings,
     commonJSSettings,
 
     libraryDependencies ++= Seq(

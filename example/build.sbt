@@ -3,6 +3,9 @@ name := "jquery-demo"
 inThisBuild(Seq(
   version := "3.0.0",
   organization := "io.udash",
+))
+
+val commonSettings = Seq(
   scalaVersion := "2.12.7",
   crossScalaVersions := Seq("2.11.12", "2.12.7"),
   scalacOptions ++= Seq(
@@ -25,13 +28,19 @@ inThisBuild(Seq(
       "-Ycache-macro-class-loader:last-modified"
     ) else Seq.empty
   },
-))
+
+  libraryDependencies ++= Dependencies.deps.value
+)
 
 val generatedGlobalDir = file("generated/global")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
+val root = project.in(file(".")).enablePlugins(ScalaJSPlugin)
+  .settings(commonSettings)
+
 val `jquery-global-demo` = project.in(file("global-demo")).enablePlugins(ScalaJSPlugin)
   .settings(
-    libraryDependencies ++= Dependencies.deps.value,
+    commonSettings,
+    
     jsDependencies ++= Dependencies.jsDeps.value,
 
     sourceDirsSettings(_.getParentFile),
@@ -69,8 +78,8 @@ val compileStatics = taskKey[Unit]("Compiles all static files.")
 val `jquery-bundler-demo` = project.in(file("bundler-demo"))
   .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
-    libraryDependencies ++= Dependencies.deps.value,
-    
+    commonSettings,
+
     sourceDirsSettings(_.getParentFile),
 
     Compile / scalaJSUseMainModuleInitializer := true,
