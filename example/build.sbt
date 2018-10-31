@@ -27,19 +27,20 @@ inThisBuild(Seq(
   },
 ))
 
-val generatedDir = file("generated")
-val compileStatics = taskKey[Unit]("Compiles all static files.")
+val generatedGlobalDir = file("generated/global")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
-val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
+val `jquery-global-demo` = project.in(file("global-demo")).enablePlugins(ScalaJSPlugin)
   .settings(
     libraryDependencies ++= Dependencies.deps.value,
     jsDependencies ++= Dependencies.jsDeps.value,
 
+    sourceDirsSettings(_.getParentFile),
+
     /* move these files out of target/. */
-    Compile / fullOptJS / crossTarget := generatedDir,
-    Compile / fastOptJS / crossTarget := generatedDir,
-    Compile / packageJSDependencies / crossTarget := generatedDir,
-    Compile / packageMinifiedJSDependencies / crossTarget := generatedDir,
+    Compile / fullOptJS / crossTarget := generatedGlobalDir,
+    Compile / fastOptJS / crossTarget := generatedGlobalDir,
+    Compile / packageJSDependencies / crossTarget := generatedGlobalDir,
+    Compile / packageMinifiedJSDependencies / crossTarget := generatedGlobalDir,
 
     Compile / fastOptJS := (Compile / fastOptJS).dependsOn(copyAssets).value,
     Compile / fullOptJS := (Compile / fullOptJS).dependsOn(copyAssets).value,
@@ -48,8 +49,8 @@ val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
 
     copyAssets := {
       IO.copyFile(
-        sourceDirectory.value / "main/assets/index-global.html",
-        generatedDir / "index.html"
+        sourceDirectory.value / "main/assets/index.html",
+        generatedGlobalDir / "index.html"
       )
     },
 
@@ -63,17 +64,21 @@ val `jquery-demo` = project.in(file(".")).enablePlugins(ScalaJSPlugin)
       (Compile / packageMinifiedJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js"
   )
 
-val `jquery-bundler-demo` = project.in(file("."))
+val generatedBundlerDir = file("generated/bundler")
+val compileStatics = taskKey[Unit]("Compiles all static files.")
+val `jquery-bundler-demo` = project.in(file("bundler-demo"))
   .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
     libraryDependencies ++= Dependencies.deps.value,
+    
+    sourceDirsSettings(_.getParentFile),
 
     Compile / scalaJSUseMainModuleInitializer := true,
 
     copyAssets := {
       IO.copyFile(
-        sourceDirectory.value / "main/assets/index-bundler.html",
-        generatedDir / "index.html"
+        sourceDirectory.value / "main/assets/index.html",
+        generatedBundlerDir / "index.html"
       )
     },
 
@@ -81,12 +86,33 @@ val `jquery-bundler-demo` = project.in(file("."))
       val sjsFileName = (Compile / fastOptJS).value.data.name.stripSuffix(".js")
       IO.copyFile(
         (Compile / npmUpdate / crossTarget).value / s"$sjsFileName-bundle.js",
-        generatedDir / "scripts/frontend.js"
+        generatedBundlerDir / "scripts/frontend.js"
       )
       IO.copyFile(
         (Compile / npmUpdate / crossTarget).value / s"$sjsFileName-bundle.js.map",
-        generatedDir / "scripts/frontend.js.map"
+        generatedBundlerDir / "scripts/frontend.js.map"
       )
     },
     compileStatics := compileStatics.dependsOn(Compile / fastOptJS / webpack, copyAssets).value,
   )
+
+def mkSourceDirs(base: File, scalaBinary: String, conf: String): Seq[File] = Seq(
+  base / "src" / conf / "scala",
+  base / "src" / conf / s"scala-$scalaBinary",
+  base / "src" / conf / "java"
+)
+
+def mkResourceDirs(base: File, conf: String): Seq[File] = Seq(
+  base / "src" / conf / "resources"
+)
+
+def sourceDirsSettings(baseMapper: File => File) = Seq(
+  Compile / unmanagedSourceDirectories ++=
+    mkSourceDirs(baseMapper(baseDirectory.value), scalaBinaryVersion.value, "main"),
+  Compile / unmanagedResourceDirectories ++=
+    mkResourceDirs(baseMapper(baseDirectory.value), "main"),
+  Test / unmanagedSourceDirectories ++=
+    mkSourceDirs(baseMapper(baseDirectory.value), scalaBinaryVersion.value, "test"),
+  Test / unmanagedResourceDirectories ++=
+    mkResourceDirs(baseMapper(baseDirectory.value), "test"),
+)
