@@ -61,5 +61,5 @@ lazy val root = project.in(file("."))
     ),
 
     Compile / npmDependencies += "jquery" -> "3.3.1",
-    Test / requiresDOM := true
+    Test / requireJsDomEnv := true
   )
