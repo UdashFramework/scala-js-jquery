@@ -3,7 +3,7 @@ import org.openqa.selenium.chrome.ChromeOptions
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "3.0.0-SNAPSHOT",
+  version := "3.0.0",
   organization := "io.udash",
 ))
 
