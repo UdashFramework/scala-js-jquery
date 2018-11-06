@@ -12,12 +12,18 @@ sealed trait TopLeftCoords {
 case class Position(override val top: Double, override val left: Double) extends TopLeftCoords
 case class Offset(override val top: Double, override val left: Double) extends TopLeftCoords
 
-case class AnimationOptions(duration: Option[Int] = None, easing: Option[EasingFunction] = None, queue: Option[Boolean] = None,
-                            step: (Int, js.Dynamic) => Any = null, progress: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Int, Int) => Any = null,
-                            complete: () => Any = null, start: JQueryPromise[js.Function1[js.Any, js.Any], js.Any] => Any = null,
-                            done: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null,
-                            fail: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null,
-                            always: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null) {
+case class AnimationOptions(
+  duration: Option[Int] = None,
+  easing: Option[EasingFunction] = None,
+  queue: Option[Boolean] = None,
+  step: (Int, js.Dynamic) => Any = null,
+  progress: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Int, Int) => Any = null,
+  complete: () => Any = null,
+  start: JQueryPromise[js.Function1[js.Any, js.Any], js.Any] => Any = null,
+  done: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null,
+  fail: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null,
+  always: (JQueryPromise[js.Function1[js.Any, js.Any], js.Any], Boolean) => Any = null
+) {
   def toJSDictionary: js.Dictionary[Any] = {
     val r = js.Dictionary[Any]()
     if (duration.isDefined) r.update("duration", duration.get)
