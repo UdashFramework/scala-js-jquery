@@ -87,4 +87,8 @@ trait JQueryEvent extends Event {
   /** For key or mouse events, this property indicates the specific key or button that was pressed.<br/>
     * See: <a href="http://api.jquery.com/event.which/">jQuery Docs</a> */
   def which: Int = js.native
+
+  /** The original JavaScript event.
+    * See: <a href="http://api.jquery.com/category/events/event-object/">jQuery Docs</a> */
+  def originalEvent: Event = js.native
 }
