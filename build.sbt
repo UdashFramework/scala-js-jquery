@@ -34,7 +34,7 @@ val commonSettings = Seq(
 )
 
 val commonJSSettings = Seq(
-  //Compile / emitSourceMaps := true,
+  Compile / emitSourceMaps := true,
   Test / parallelExecution := false,
   Test / scalaJSStage := FastOptStage,
   // ScalaJSBundlerPlugin does not work with scalajs-env-selenium:
