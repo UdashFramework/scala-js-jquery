@@ -3,13 +3,13 @@
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "3.0.0",
+  version := "3.0.1",
   organization := "io.udash",
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.12.10",
-  crossScalaVersions := Seq("2.11.12", "2.12.10"),
+  scalaVersion := "2.13.1",
+  crossScalaVersions := Seq("2.12.10", "2.13.1"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -19,18 +19,13 @@ val commonSettings = Seq(
     "-language:dynamics",
     "-language:postfixOps",
     "-language:experimental.macros",
-    "-Xfuture",
     "-Xfatal-warnings",
-    "-Xlint:_"
+    "-Xlint:_",
+    "-Ywarn-unused:_,-explicits,-implicits",
+    "-Ybackend-parallelism", "4",
+    "-Ycache-plugin-class-loader:last-modified",
+    "-Ycache-macro-class-loader:last-modified",
   ),
-  scalacOptions ++= {
-    if (scalaBinaryVersion.value == "2.12") Seq(
-      "-Ywarn-unused:_,-explicits,-implicits",
-      "-Ybackend-parallelism", "4",
-      "-Ycache-plugin-class-loader:last-modified",
-      "-Ycache-macro-class-loader:last-modified"
-    ) else Seq.empty
-  }
 )
 
 val commonJSSettings = Seq(
