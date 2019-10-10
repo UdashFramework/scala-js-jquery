@@ -4,7 +4,6 @@ dist: trusty
 jdk: openjdk11
 
 scala:
-  - 2.12.10
   - 2.13.1
 
 before_script:
@@ -23,6 +22,5 @@ before_script:
   - export PATH=$PWD/selenium-bin:$PATH
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
-  - sbt ++$TRAVIS_SCALA_VERSION publishLocal
-  - cd example && sbt ++$TRAVIS_SCALA_VERSION compile jquery-global-demo/fullOptJS jquery-bundler-demo/compileStatics
+  - sbt +test +publishLocal
+  - cd example && sbt compile jquery-global-demo/fullOptJS jquery-bundler-demo/compileStatics
