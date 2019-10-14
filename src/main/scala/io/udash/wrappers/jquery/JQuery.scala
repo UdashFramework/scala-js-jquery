@@ -1,6 +1,6 @@
 package io.udash.wrappers.jquery
 
-import org.scalajs.dom._
+import org.scalajs.dom.Element
 
 import scala.collection.mutable
 import scala.scalajs.js
