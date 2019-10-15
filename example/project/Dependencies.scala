@@ -1,4 +1,6 @@
-
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
+import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
+import sbt._
 
 object Dependencies {
   val udashCoreVersion = "0.8.1"
