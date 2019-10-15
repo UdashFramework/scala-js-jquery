@@ -1,13 +1,13 @@
 name := "jquery-demo"
 
 inThisBuild(Seq(
-  version := "3.0.0",
+  version := "3.0.1",
   organization := "io.udash",
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.12.7",
-  crossScalaVersions := Seq("2.11.12", "2.12.7"),
+  scalaVersion := "2.12.10",
+  crossScalaVersions := Seq("2.12.10"), //todo 2.13
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -16,18 +16,13 @@ val commonSettings = Seq(
     "-language:existentials",
     "-language:dynamics",
     "-language:postfixOps",
-    "-Xfuture",
     "-Xfatal-warnings",
     "-Xlint:_",
+    "-Ywarn-unused:_,-explicits,-implicits",
+    "-Ybackend-parallelism", "4",
+    "-Ycache-plugin-class-loader:last-modified",
+    "-Ycache-macro-class-loader:last-modified"
   ),
-  scalacOptions ++= {
-    if (scalaBinaryVersion.value == "2.12") Seq(
-      "-Ywarn-unused:_,-explicits,-implicits",
-      "-Ybackend-parallelism", "4",
-      "-Ycache-plugin-class-loader:last-modified",
-      "-Ycache-macro-class-loader:last-modified"
-    ) else Seq.empty
-  },
 
   libraryDependencies ++= Dependencies.deps.value
 )

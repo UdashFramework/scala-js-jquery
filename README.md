@@ -7,7 +7,7 @@ Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) program
 Add the following dependency to your SBT build:
 
 ```scala
-libraryDependencies += "io.udash" %%% "udash-jquery" % "3.0.0"
+libraryDependencies += "io.udash" %%% "udash-jquery" % "3.0.2"
 ```
 
 then import the jQuery package: 
