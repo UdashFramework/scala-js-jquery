@@ -1,10 +1,13 @@
+package io.udash.wrappers.jquery_test
+
 import org.scalajs.dom.Element
 import org.scalajs.dom.html.Input
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class EventsHandlingTest extends WordSpec with Matchers {
+class EventsHandlingTest extends AnyWordSpec with Matchers {
+
   import io.udash.wrappers.jquery._
-
   import scalatags.JsDom.all._
 
   class C(i: Int)

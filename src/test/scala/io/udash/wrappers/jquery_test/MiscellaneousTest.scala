@@ -1,10 +1,11 @@
 package io.udash.wrappers.jquery_test
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class MiscellaneousTest extends WordSpec with Matchers {
+class MiscellaneousTest extends AnyWordSpec with Matchers {
+
   import io.udash.wrappers.jquery._
-
   import scalatags.JsDom.all._
 
   class C(i: Int)
@@ -45,7 +46,8 @@ class MiscellaneousTest extends WordSpec with Matchers {
     }
 
     "serialize objects to URL query string" in {
-      import scala.scalajs.js, js.JSConverters._
+      import scala.scalajs.js
+      import js.JSConverters._
       jQ.param(js.Dynamic.literal("a" -> Seq(1, 2, 3).toJSArray, "b" -> "c")) should be("a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&b=c")
     }
   }
