@@ -9,7 +9,7 @@ inThisBuild(Seq(
 
 val commonSettings = Seq(
   scalaVersion := "2.13.1",
-  crossScalaVersions := Seq("2.12.10", "2.13.1"),
+  crossScalaVersions := Seq("2.12.11", "2.13.1"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -29,7 +29,6 @@ val commonSettings = Seq(
 )
 
 val commonJSSettings = Seq(
-  Compile / emitSourceMaps := true,
   Test / parallelExecution := false,
   Test / scalaJSStage := FastOptStage,
   // ScalaJSBundlerPlugin does not work with scalajs-env-selenium:
@@ -40,7 +39,6 @@ val commonJSSettings = Seq(
     val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
     s"-P:scalajs:mapSourceURI:$localDir->$githubDir/v${version.value}/"
   },
-  scalacOptions += "-P:scalajs:sjsDefinedByDefault",
 )
 
 lazy val root = project.in(file("."))
