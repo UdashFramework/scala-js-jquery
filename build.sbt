@@ -27,14 +27,46 @@ val commonSettings = Seq(
     "-Ycache-plugin-class-loader:last-modified",
     "-Ycache-macro-class-loader:last-modified",
   ),
+  autoAPIMappings := true,
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  pomIncludeRepository := { _ => false },
+
+  publishTo := sonatypePublishToBundle.value,
+
+  credentials in Global += Credentials(
+    "Sonatype Nexus Repository Manager",
+    "oss.sonatype.org",
+    sys.env.getOrElse("SONATYPE_USERNAME", ""),
+    sys.env.getOrElse("SONATYPE_PASSWORD", "")
+  ),
+
+  pomExtra := {
+    <url>https://github.com/UdashFramework/scala-js-jquery</url>
+      <licenses>
+        <license>
+          <name>Apache v.2 License</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+          <distribution>repo</distribution>
+        </license>
+      </licenses>
+      <scm>
+        <url>git@github.com:UdashFramework/scala-js-jquery.git</url>
+        <connection>scm:git@github.com:UdashFramework/scala-js-jquery.git</connection>
+      </scm>
+      <developers>
+        <developer>
+          <id>avsystem</id>
+          <name>AVSystem</name>
+          <url>http://www.avsystem.com/</url>
+        </developer>
+      </developers>
+  }
 )
 
 val commonJSSettings = Seq(
   Test / parallelExecution := false,
   Test / scalaJSStage := FastOptStage,
-  // ScalaJSBundlerPlugin does not work with scalajs-env-selenium:
-  // https://github.com/scalacenter/scalajs-bundler/issues/89
-  // Test / jsEnv := new SeleniumJSEnv(browserCapabilities),
   scalacOptions += {
     val localDir = (ThisBuild / baseDirectory).value.toURI.toString
     val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"

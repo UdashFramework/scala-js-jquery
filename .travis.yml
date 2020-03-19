@@ -7,34 +7,34 @@ scala:
 stages:
   - test
   - name: release
-    if: tag =~ ^v
+  - if: tag =~ ^v
 
 jobs:
   include:
     - stage: test
-      before_script:
-        - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-        - mkdir geckodriver
-        - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
-        - export PATH=$PWD/geckodriver:$PATH
       script:
         - sbt +test +publishLocal
         - cd example && sbt compileStatics
     - stage: release
       script:
-        - openssl aes-256-cbc -K $encrypted_f00a6d0a0202_key -iv $encrypted_f00a6d0a0202_iv -in travis/travis.gpg.enc -out travis/travis.gpg -d
+        - openssl aes-256-cbc -K $encrypted_f00a6d0a0202_key -iv $encrypted_f00a6d0a0202_iv
+          -in travis/travis.gpg.enc -out travis/travis.gpg -d
         - gpg --import travis/travis.gpg
         - test $TRAVIS_PULL_REQUEST = "false" && sbt +publishSigned sonatypeBundleRelease
 
 before_cache:
-  # Cleanup the cached directories to avoid unnecessary cache updates
   - rm -fv $HOME/.ivy2/.sbt.ivy.lock
   - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
   - find $HOME/.sbt        -name "*.lock"               -print -delete
 
 cache:
   directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.m2
-    - $HOME/.cache
-    - $HOME/.sbt
+    - "$HOME/.ivy2/cache"
+    - "$HOME/.m2"
+    - "$HOME/.cache"
+    - "$HOME/.sbt"
+
+env:
+  global:
+    - secure: rG9cHG3au9EUYQSJKHAsMxws3IW/tSxG1Y/xbuW2Ri1JVr6L6c9ig8gYj4Hju5KkVvxXejb1/8bYCoZEP1vZpNeSkNordHECp0l+i9mI5ZFo5RN3vMCq4/0xWEQTdZ7c3BjN+pn4veDJ+W8cHFXgivC9tsX7FEbksz4bFVIm1knvz5r7HN4ntgQUeLwY/J9EpKSr/TYZsnEcf8aH9q6tvTLqcfYAR6ggs68Kc2qJ5sII0rj3vP2NANjTLuvdkPSe3i/9KCDRDr9KIoVsam4LfFDG8YXSNWBP3OQU86DF19V0brt6WGGX6G5V2dyjlHyyUy0GBFJOlPmfkEL8ylOprGy1OPw40ZPRbtzpbztFlVmgJoO3UcKIWlyB8umz0M9A+E3Of3P9mTnskAe366VPSq8R/G3kxc7ictZDQH7hgf2nKqlFQNXCJkBqynWRlC0HQ31izrACqNmmYdwQspUnAFVOEFSmfXu8sPVyOSQhHT4IG+xgG4KCKdC8Cv4buOFDzj4z0DRnfJwR71KvxA9KGhUtMZXXqfdZANThHMV1bsi3S3UPQKqRg62aja4+I7lzbwrPRbkDPsl0eTdULF39jIMnbfjC2TqeCgfG+tpel0DBMBOuuESvTVFVX38HSgK1QNhSAAu1nrVIFtZQbKDZLOm7hCgfOJO6v65R3PgIFFI=
+    - secure: wjX1uXAYdNxpUr1nz9cQ96cgJI3wUqJ7hIQlHwtg1gLJJtgdf6STSTbAm1IKMb0Ouytc2muC1H8jhBbv94tyZh2/NI7IDk7OY2wcLobH2Jh/wnDEAAcATIhqR/oFtSdqr0umr1HDevUPIBU/ZFViCPribnCQ/Rxn8jttguGd3Ho1k1dxzJ9pEiET66nU8CnW0j8g1Nkg540xFPff0Q+1C7+3akU03KwLnh8C0KR1oGhT354IhocLtFKWPuD9GTXAiA6qcOZ0cmUlv8jwHhWyJ6dmVkOlv873nGPrFaWEDPepNkGaAz2TYjkeFS0YS8q1zbd7YM0opnQd8TJCnFddyzc09+1d5RMAJVWdKOKVjrbDwvKaNWfEHW6GXJ83xm8cbo3dCREfL7UTKjejkQTRgmj2BdrZVRB9xs+XKZpZi0ECVbIrwik9tyYoiuSHe96yNN3Ma56Q4x094ZTvsccjy7pET4FCpNwrFu0aD+HFPerWB/xlr9ILz7sWy99r4eafS+O2eidoQnPIHAHZ+z/k9ExQedKUzTxO/skgrf1FvswrY7cpfnNApOhCSKm8C5NfMB5BC7M7OsYqDIhIwfs/Q3J9gw18F4fa9czpnduVzkpQUGdZ2vtS+oxDGICB7uaxkRq7HudHHElhz4w9qEOIMpTJjICPa38Hr/fKGxpuhKE=
