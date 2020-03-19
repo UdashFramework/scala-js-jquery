@@ -23,4 +23,4 @@ before_script:
 
 script:
   - sbt +test +publishLocal
-  - cd example && sbt compile jquery-global-demo/fullOptJS jquery-bundler-demo/compileStatics
+  - cd example && sbt compileStatics

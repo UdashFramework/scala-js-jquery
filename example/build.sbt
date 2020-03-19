@@ -33,7 +33,7 @@ val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(commonSettings)
 
-val generatedBundlerDir = file("generated/bundler")
+val generatedBundlerDir = file("generated")
 val compileStatics = taskKey[Unit]("Compiles all static files.")
 
 val example = project.in(file("."))
