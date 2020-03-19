@@ -3,8 +3,9 @@
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "3.0.3",
+  version := sys.env.get("TRAVIS_TAG").filter(_.startsWith("v")).map(_.drop(1)).getOrElse("3.0.0-SNAPSHOT"),
   organization := "io.udash",
+  cancelable := true,
 ))
 
 val commonSettings = Seq(
