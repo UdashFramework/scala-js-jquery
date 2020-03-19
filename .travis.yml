@@ -9,18 +9,17 @@ stages:
   - name: release
     if: tag =~ ^v
 
-before_script:
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-  - mkdir geckodriver
-  - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
-  - export PATH=$PWD/geckodriver:$PATH
-
-script:
-  - sbt +test +publishLocal
-  - cd example && sbt compileStatics
-
 jobs:
   include:
+    - stage: test
+      before_script:
+        - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+        - mkdir geckodriver
+        - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
+        - export PATH=$PWD/geckodriver:$PATH
+      script:
+        - sbt +test +publishLocal
+        - cd example && sbt compileStatics
     - stage: release
       script:
         - openssl aes-256-cbc -K $encrypted_f00a6d0a0202_key -iv $encrypted_f00a6d0a0202_iv -in travis/travis.gpg.enc -out travis/travis.gpg -d
