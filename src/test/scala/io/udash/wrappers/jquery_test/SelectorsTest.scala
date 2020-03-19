@@ -1,8 +1,10 @@
 package io.udash.wrappers.jquery_test
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class SelectorsTest extends WordSpec with Matchers {
+class SelectorsTest extends AnyWordSpec with Matchers {
+
   import io.udash.wrappers.jquery._
   import scalatags.JsDom.all._
 

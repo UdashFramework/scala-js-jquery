@@ -1,13 +1,13 @@
 name := "jquery-demo"
 
 inThisBuild(Seq(
-  version := "3.0.1",
+  version := "3.0.2",
   organization := "io.udash",
 ))
 
 val commonSettings = Seq(
   scalaVersion := "2.12.10",
-  crossScalaVersions := Seq("2.12.10"), //todo 2.13
+  crossScalaVersions := Seq("2.12.10"), //todo 2.13 & SJS 1.0 with Udash 0.9
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -33,46 +33,10 @@ val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(commonSettings)
 
-val `jquery-global-demo` = project.in(file("global-demo"))
-  .enablePlugins(ScalaJSPlugin)
-  .settings(
-    commonSettings,
-
-    jsDependencies ++= Dependencies.jsDeps.value,
-
-    sourceDirsSettings(_.getParentFile),
-
-    /* move these files out of target/. */
-    Compile / fullOptJS / crossTarget := generatedGlobalDir,
-    Compile / fastOptJS / crossTarget := generatedGlobalDir,
-    Compile / packageJSDependencies / crossTarget := generatedGlobalDir,
-    Compile / packageMinifiedJSDependencies / crossTarget := generatedGlobalDir,
-
-    Compile / fastOptJS := (Compile / fastOptJS).dependsOn(copyAssets).value,
-    Compile / fullOptJS := (Compile / fullOptJS).dependsOn(copyAssets).value,
-
-    scalaJSUseMainModuleInitializer := true,
-
-    copyAssets := {
-      IO.copyFile(
-        sourceDirectory.value / "main/assets/index.html",
-        generatedGlobalDir / "index.html"
-      )
-    },
-
-    Compile / fastOptJS / artifactPath :=
-      (Compile / fastOptJS / crossTarget).value / "scripts" / "frontend-impl.js",
-    Compile / fullOptJS / artifactPath :=
-      (Compile / fullOptJS / crossTarget).value / "scripts" / "frontend-impl.js",
-    Compile / packageJSDependencies / artifactPath :=
-      (Compile / packageJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js",
-    Compile / packageMinifiedJSDependencies / artifactPath :=
-      (Compile / packageMinifiedJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js"
-  )
-
-val generatedBundlerDir = file("generated/bundler")
+val generatedBundlerDir = file("generated")
 val compileStatics = taskKey[Unit]("Compiles all static files.")
-val `jquery-bundler-demo` = project.in(file("bundler-demo"))
+
+val example = project.in(file("."))
   .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
     commonSettings,
