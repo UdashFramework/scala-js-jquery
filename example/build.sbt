@@ -32,10 +32,8 @@ val compileStatics = taskKey[Unit]("Compiles all static files.")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 
 lazy val root = project.in(file("."))
-  .aggregate(`jquery-bundler-demo`, `jquery-global-demo`)
-  .settings(
-    crossScalaVersions := Nil,
-  )
+  .enablePlugins(ScalaJSPlugin)
+  .settings(commonSettings)
 
 lazy val `jquery-global-demo` = project.in(file("global-demo"))
   .enablePlugins(ScalaJSPlugin)
