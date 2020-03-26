@@ -1,5 +1,3 @@
-
-
 name := "udash-jquery"
 
 inThisBuild(Seq(
@@ -75,7 +73,7 @@ val commonJSSettings = Seq(
 )
 
 lazy val root = project.in(file("."))
-  .enablePlugins(ScalaJSBundlerPlugin)
+  .enablePlugins(ScalaJSBundlerPlugin, JSDependenciesPlugin)
   .settings(
     commonSettings,
     commonJSSettings,
@@ -87,5 +85,6 @@ lazy val root = project.in(file("."))
     ),
 
     Compile / npmDependencies += "jquery" -> "3.3.1",
+    jsDependencies += "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js",
     Test / requireJsDomEnv := true
   )
