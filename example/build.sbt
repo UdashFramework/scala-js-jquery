@@ -31,7 +31,7 @@ val generatedGlobalDir = file("generated/global")
 val compileStatics = taskKey[Unit]("Compiles all static files.")
 val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 
-lazy val root: Project = project.in(file("."))
+lazy val root = project.in(file("."))
   .aggregate(`jquery-bundler-demo`, `jquery-global-demo`)
   .settings(
     crossScalaVersions := Nil,
@@ -59,7 +59,7 @@ lazy val `jquery-global-demo` = project.in(file("global-demo"))
 
     copyAssets := {
       IO.copyFile(
-        root.base / "src/main/assets/index.html",
+        sourceDirectory.value / "main/assets/index.html",
         generatedGlobalDir / "index.html"
       )
     },
@@ -88,7 +88,7 @@ lazy val `jquery-bundler-demo` = project.in(file("bundler-demo"))
 
     copyAssets := {
       IO.copyFile(
-        root.base / "src/main/assets/index.html",
+        sourceDirectory.value / "main/assets/index.html",
         generatedBundlerDir / "index.html"
       )
     },
