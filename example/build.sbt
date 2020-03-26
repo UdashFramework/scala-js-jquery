@@ -28,15 +28,56 @@ val commonSettings = Seq(
 )
 
 val generatedGlobalDir = file("generated/global")
-val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
-val root = project.in(file("."))
-  .enablePlugins(ScalaJSPlugin)
-  .settings(commonSettings)
-
-val generatedBundlerDir = file("generated")
 val compileStatics = taskKey[Unit]("Compiles all static files.")
+val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 
-val example = project.in(file("."))
+lazy val root: Project = project.in(file("."))
+  .aggregate(`jquery-bundler-demo`, `jquery-global-demo`)
+  .settings(
+    crossScalaVersions := Nil,
+  )
+
+lazy val `jquery-global-demo` = project.in(file("global-demo"))
+  .enablePlugins(ScalaJSPlugin)
+  .settings(
+    commonSettings,
+
+    jsDependencies ++= Dependencies.jsDeps.value,
+
+    sourceDirsSettings(_.getParentFile),
+
+    /* move these files out of target/. */
+    Compile / fullOptJS / crossTarget := generatedGlobalDir,
+    Compile / fastOptJS / crossTarget := generatedGlobalDir,
+    Compile / packageJSDependencies / crossTarget := generatedGlobalDir,
+    Compile / packageMinifiedJSDependencies / crossTarget := generatedGlobalDir,
+
+    Compile / fastOptJS := (Compile / fastOptJS).dependsOn(copyAssets).value,
+    Compile / fullOptJS := (Compile / fullOptJS).dependsOn(copyAssets).value,
+
+    scalaJSUseMainModuleInitializer := true,
+
+    copyAssets := {
+      IO.copyFile(
+        root.base / "src/main/assets/index.html",
+        generatedGlobalDir / "index.html"
+      )
+    },
+
+    compileStatics := (Compile / fastOptJS).value,
+
+    Compile / fastOptJS / artifactPath :=
+      (Compile / fastOptJS / crossTarget).value / "scripts" / "frontend-impl.js",
+    Compile / fullOptJS / artifactPath :=
+      (Compile / fullOptJS / crossTarget).value / "scripts" / "frontend-impl.js",
+    Compile / packageJSDependencies / artifactPath :=
+      (Compile / packageJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js",
+    Compile / packageMinifiedJSDependencies / artifactPath :=
+      (Compile / packageMinifiedJSDependencies / crossTarget).value / "scripts" / "frontend-deps.js"
+  )
+
+val generatedBundlerDir = file("generated/bundler")
+lazy val `jquery-bundler-demo` = project.in(file("bundler-demo"))
   .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
     commonSettings,
@@ -47,7 +88,7 @@ val example = project.in(file("."))
 
     copyAssets := {
       IO.copyFile(
-        sourceDirectory.value / "main/assets/index.html",
+        root.base / "src/main/assets/index.html",
         generatedBundlerDir / "index.html"
       )
     },
