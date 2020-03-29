@@ -1,17 +1,14 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 
-object DataViewPresenter extends StaticViewFactory[IndexState.type](() => new DataView)
-
 /** Based on examples from: <a href="http://api.jquery.com/data/">jQuery Docs</a>. */
-class DataView extends FunctionView {
+object DataView extends FunctionView {
+
   import scalatags.JsDom.all._
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3(".data()"),
     div(
       "The values stored were ",
@@ -19,9 +16,9 @@ class DataView extends FunctionView {
       " and ",
       span("_")
     )
-  ).render
+  )
 
-  override protected val script = () => {
+  override protected def script = () => {
     jQ(".demo div").data("test", Map("first" -> 16, "last" -> "pizza!"))
     val data: Map[String, Any] = jQ(".demo div").data("test").get.asInstanceOf[Map[String, Any]]
     jQ(".demo div span:first").text(data.get("first").get.toString)

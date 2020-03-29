@@ -1,19 +1,20 @@
 package io.udash.demos.jquery.views
 
-import io.udash._
-import org.scalajs.dom.{Element, Event}
+import org.scalajs.dom.Event
 
-abstract class FunctionView extends FinalView {
+abstract class FunctionView {
+
   import scalatags.JsDom.all._
 
-  protected val content: Element
-  protected val script: () => Any
+  protected def content: Modifier
 
-  override def getTemplate: Modifier =
+  protected def script: () => Any
+
+  final def getTemplate: Modifier =
     div(
       content,
       button(
-        onclick :+= ((_: Event) => {
+        onclick := ((_: Event) => {
           script()
           false
         })

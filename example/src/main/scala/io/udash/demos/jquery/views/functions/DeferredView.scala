@@ -1,22 +1,19 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
 
-object DeferredViewPresenter extends StaticViewFactory[IndexState.type](() => new DeferredView)
-
 /** Based on examples from: <a href="http://api.jquery.com/deferred/">jQuery Docs</a>. */
-class DeferredView extends FunctionView {
+object DeferredView extends FunctionView {
+
   import scalatags.JsDom.all._
 
   var deferred: JQueryDeferred[js.Function1[Int, js.Any], Int] = null
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3("Deferred"),
     div(
       div(id := "deferred")("???"),
@@ -42,9 +39,9 @@ class DeferredView extends FunctionView {
         })
       )("Notify(1)")
     )
-  ).render
+  )
 
-  override protected val script = () => {
+  override protected def script = () => {
     jQ(".demo button").prop("disabled", "")
     deferred = jQ.deferred[js.Function1[Int, js.Any], Int]()
     jQ("#deferred").text(s"Waiting...")

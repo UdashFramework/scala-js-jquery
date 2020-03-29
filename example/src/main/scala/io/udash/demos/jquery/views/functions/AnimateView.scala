@@ -1,20 +1,16 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.Element
-
 import scalatags.JsDom.tags2
 
-object AnimateViewPresenter extends StaticViewFactory[IndexState.type](() => new AnimateView)
-
 /** Based on examples from: <a href="http://api.jquery.com/animate/">jQuery Docs</a>. */
-class AnimateView extends FunctionView {
+object AnimateView extends FunctionView {
+
   import scalatags.JsDom.all._
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3(".animate() & .click()"),
     tags2.style(
       """.demo div {
@@ -36,11 +32,11 @@ class AnimateView extends FunctionView {
     button(id := "go4", disabled := "disabled")("» Reset"),
     div(id := "block1")("Block1"),
     div(id := "block2")("Block2")
-  ).render
+  )
 
-  override protected val script = () => {
+  override protected def script = () => {
     jQ("#go1").on(EventName.click, (_: Element, _: JQueryEvent) => {
-      jQ( "#block1" )
+      jQ("#block1")
         .animate(Map(
           "width" -> "90%"
         ), AnimationOptions(

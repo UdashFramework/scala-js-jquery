@@ -1,19 +1,15 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
-
 import scalatags.JsDom.tags2
 
-object AddViewPresenter extends StaticViewFactory[IndexState.type](() => new AddView)
-
 /** Based on examples from: <a href="http://api.jquery.com/add/">jQuery Docs</a>. */
-class AddView extends FunctionView {
+object AddView extends FunctionView {
+
   import scalatags.JsDom.all._
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3(".add() & .css()"),
     tags2.style(
       """.demo div {
@@ -38,9 +34,9 @@ class AddView extends FunctionView {
     div(),
     div(),
     p("Added this... (notice no border)")
-  ).render
+  )
 
-  override protected val script = () => {
+  override protected def script = () => {
     jQ(".demo div").css("border", "2px solid red")
       .add(".demo p")
       .css("background", "yellow")

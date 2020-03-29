@@ -1,19 +1,15 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
-
 import scalatags.JsDom.tags2
 
-object AddBackViewPresenter extends StaticViewFactory[IndexState.type](() => new AddBackView)
-
 /** Based on examples from: <a href="http://api.jquery.com/addBack/">jQuery Docs</a>. */
-class AddBackView extends FunctionView {
+object AddBackView extends FunctionView {
+
   import scalatags.JsDom.all._
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3(".addBack() & .addClass()"),
     tags2.style(
       """.demo p, .demo div {
@@ -48,15 +44,15 @@ class AddBackView extends FunctionView {
         p("Second Paragraph")
       )
     )
-  ).render
+  )
 
-  override protected val script = () => {
-    jQ( ".demo div.left, .demo div.right" ).find( "div, div > p" ).addClass( "border" )
+  override protected def script = () => {
+    jQ(".demo div.left, .demo div.right").find("div, div > p").addClass("border")
 
     // First Example
-    jQ( ".demo div.before-addback" ).find( "p" ).addClass( "background" )
+    jQ(".demo div.before-addback").find("p").addClass("background")
 
     // Second Example
-    jQ( ".demo div.after-addback" ).find( "p" ).addBack().addClass( "background" )
+    jQ(".demo div.after-addback").find("p").addBack().addClass("background")
   }
 }

@@ -1,15 +1,12 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.{Element, Event}
 
-object OnOneOffViewPresenter extends StaticViewFactory[IndexState.type](() => new OnOneOffView)
-
 /** Based on examples from: <a href="http://api.jquery.com/on/">jQuery Docs</a>. */
-class OnOneOffView extends FunctionView {
+object OnOneOffView extends FunctionView {
+
   import scalatags.JsDom.all._
 
   val onCallback = (_: Element, _: JQueryEvent) =>
@@ -17,23 +14,23 @@ class OnOneOffView extends FunctionView {
   val oneCallback = (_: Element, _: JQueryEvent) =>
     jQ(".demo ul").append(li("This will be added only once").render)
 
-  override protected val content = div(cls := "demo")(
+  override protected def content = div(cls := "demo")(
     h3(".on() & .one() & .off()"),
     button(id := "click", disabled := "disabled")("Click me"),
     ul(),
     button(
       id := "off",
       disabled := "disabled",
-      onclick :+= ((_: Event) => {
+      onclick := ((_: Event) => {
         jQ(".demo #click")
           .off(EventName.click, onCallback)
           .off(EventName.click, oneCallback)
         false
       })
     )("Off")
-  ).render
+  )
 
-  override protected val script = () => {
+  override protected def script = () => {
     jQ(".demo #click")
       .on(EventName.click, onCallback)
       .one(EventName.click, oneCallback)
