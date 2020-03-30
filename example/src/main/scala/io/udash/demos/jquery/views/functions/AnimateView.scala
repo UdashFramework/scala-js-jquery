@@ -10,10 +10,10 @@ object AnimateView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(cls := "animate")(
     h3(".animate() & .click()"),
     tags2.style(
-      """.demo div {
+      """.animate div {
         |  background-color: #bca;
         |  width: 200px;
         |  height: 1.1em;
@@ -22,7 +22,7 @@ object AnimateView extends FunctionView {
         |  margin: 3px;
         |  font-size: 14px;
         |}
-        |.demo button {
+        |.animate button {
         |  font-size: 14px;
         |}""".stripMargin
     ),
@@ -32,11 +32,11 @@ object AnimateView extends FunctionView {
     button(id := "go4", disabled := "disabled")("» Reset"),
     div(id := "block1")("Block1"),
     div(id := "block2")("Block2")
-  )
+  ).render
 
   override protected def script = () => {
-    jQ("#go1").on(EventName.click, (_: Element, _: JQueryEvent) => {
-      jQ("#block1")
+    jQ("#go1", content).on(EventName.click, (_: Element, _: JQueryEvent) => {
+      jQ("#block1", content)
         .animate(Map(
           "width" -> "90%"
         ), AnimationOptions(
@@ -47,27 +47,27 @@ object AnimateView extends FunctionView {
         .animate(Map("borderRightWidth" -> "15px"), 1500)
     })
 
-    jQ("#go2").on(EventName.click, (_: Element, _: JQueryEvent) => {
-      jQ("#block2")
+    jQ("#go2", content).on(EventName.click, (_: Element, _: JQueryEvent) => {
+      jQ("#block2", content)
         .animate(Map("width" -> "90%"), 1000)
         .animate(Map("fontSize" -> "24px"), 1000)
         .animate(Map("borderLeftWidth" -> "15px"), 1000)
     })
 
-    jQ("#go3").on(EventName.click, (_: Element, _: JQueryEvent) => {
-      jQ("#go1").add("#go2").trigger("click")
+    jQ("#go3", content).on(EventName.click, (_: Element, _: JQueryEvent) => {
+      jQ("#go1", content).add("#go2", content).trigger("click")
     })
 
-    jQ("#go4").on(EventName.click, (_: Element, _: JQueryEvent) => {
+    jQ("#go4", content).on(EventName.click, (_: Element, _: JQueryEvent) => {
       // TODO: It does not work without explicit Map elements type
       import scala.scalajs.js.`|`
-      jQ("div").css(Map[String, String | Int | Double | Boolean](
+      jQ("div", content).css(Map[String, String | Int | Double | Boolean](
         "width" -> "",
         "fontSize" -> "",
         "borderWidth" -> ""
       ))
     })
 
-    jQ(".demo button").prop("disabled", "")
+    jQ("button", content).prop("disabled", "")
   }
 }

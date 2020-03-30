@@ -8,15 +8,15 @@ object AppendPrependView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3(".append()"),
     p(id := "append")("I would like to say: "),
     h3(".prepend()"),
     p(id := "prepend")("amigo!")
-  )
+  ).render
 
   override protected def script = () => {
-    jQ("#append").append("<b>hello</b>")
-    jQ("#prepend").prepend("<i>Hello</i> ")
+    jQ("#append", content).append("<b>hello</b>")
+    jQ("#prepend", content).prepend("<i>Hello</i> ")
   }
 }

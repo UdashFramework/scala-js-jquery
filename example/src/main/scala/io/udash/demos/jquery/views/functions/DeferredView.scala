@@ -13,7 +13,7 @@ object DeferredView extends FunctionView {
 
   var deferred: JQueryDeferred[js.Function1[Int, js.Any], Int] = null
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3("Deferred"),
     div(
       div(id := "deferred")("???"),
@@ -39,14 +39,14 @@ object DeferredView extends FunctionView {
         })
       )("Notify(1)")
     )
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo button").prop("disabled", "")
+    jQ("button", content).prop("disabled", "")
     deferred = jQ.deferred[js.Function1[Int, js.Any], Int]()
-    jQ("#deferred").text(s"Waiting...")
-    deferred.done((i: Int) => jQ("#deferred").text(s"Done: $i"))
-    deferred.fail((i: Int) => jQ("#deferred").text(s"Fail: $i"))
-    deferred.progress((i: Int) => jQ("#deferred").text(s"Progress: $i"))
+    jQ("#deferred", content).text(s"Waiting...")
+    deferred.done((i: Int) => jQ("#deferred", content).text(s"Done: $i"))
+    deferred.fail((i: Int) => jQ("#deferred", content).text(s"Fail: $i"))
+    deferred.progress((i: Int) => jQ("#deferred", content).text(s"Progress: $i"))
   }
 }

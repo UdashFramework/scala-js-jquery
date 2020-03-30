@@ -8,7 +8,7 @@ object AfterBeforeView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3(".after()"),
     div(
       p(cls := "after")("I would like to say: ")
@@ -17,10 +17,10 @@ object AfterBeforeView extends FunctionView {
     div(
       p(cls := "before")("is what I said...")
     )
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".after").after("<b>Hello</b>")
-    jQ(".before").before("<b>Hello</b>")
+    jQ(".after", content).after("<b>Hello</b>")
+    jQ(".before", content).before("<b>Hello</b>")
   }
 }

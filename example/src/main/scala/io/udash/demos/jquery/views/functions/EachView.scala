@@ -9,15 +9,15 @@ object EachView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3(".each()"),
     div("Click button"),
     div("to iterate through"),
     div("these divs.")
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo div").each((el: Element, idx: Int) => {
+    jQ("div", content).each((el: Element, idx: Int) => {
       jQ(el).replaceWith(span(s"${el.textContent} ").render)
     })
   }

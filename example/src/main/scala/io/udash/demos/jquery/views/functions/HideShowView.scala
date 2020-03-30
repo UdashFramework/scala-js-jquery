@@ -8,13 +8,13 @@ object HideShowView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3(".hide() & .show()"),
     div("Click button to hide me")
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo div")
+    jQ("div", content)
       .hide(AnimationOptions(
         duration = Some(3000),
         easing = Some(EasingFunction.linear)

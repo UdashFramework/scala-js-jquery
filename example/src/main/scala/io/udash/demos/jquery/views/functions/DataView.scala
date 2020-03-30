@@ -8,7 +8,7 @@ object DataView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3(".data()"),
     div(
       "The values stored were ",
@@ -16,12 +16,12 @@ object DataView extends FunctionView {
       " and ",
       span("_")
     )
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo div").data("test", Map("first" -> 16, "last" -> "pizza!"))
-    val data: Map[String, Any] = jQ(".demo div").data("test").get.asInstanceOf[Map[String, Any]]
-    jQ(".demo div span:first").text(data.get("first").get.toString)
-    jQ(".demo div span:last").text(data.get("last").get.toString)
+    jQ("div", content).data("test", Map("first" -> 16, "last" -> "pizza!"))
+    val data: Map[String, Any] = jQ("div", content).data("test").get.asInstanceOf[Map[String, Any]]
+    jQ("div span:first", content).text(data.get("first").get.toString)
+    jQ("div span:last", content).text(data.get("last").get.toString)
   }
 }

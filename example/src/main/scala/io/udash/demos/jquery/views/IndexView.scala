@@ -25,6 +25,6 @@ object IndexView {
 
   final val content = div(
     "Take a look at following demos:",
-    demos.map(demo => div(demo.getTemplate)),
+    demos.map(demo => Seq(hr, div(demo.getTemplate))),
   )
 }

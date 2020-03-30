@@ -10,31 +10,31 @@ object CallbacksView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(
     h3("Callbacks"),
     ul(id := "plus"),
     ul(id := "minus"),
     ul(id := "mul"),
     ul(id := "div")
-  )
+  ).render
 
   override protected def script = () => {
     val callbacks = jQ.callbacks[js.Function1[(Int, Int), js.Any], (Int, Int)]()
     callbacks.add((t: (Int, Int)) => {
       val (a, b) = t
-      jQ("#plus").append(li(s"$a + $b = ${a + b}").render)
+      jQ("#plus", content).append(li(s"$a + $b = ${a + b}").render)
     })
     callbacks.add((t: (Int, Int)) => {
       val (a, b) = t
-      jQ("#minus").append(li(s"$a - $b = ${a - b}").render)
+      jQ("#minus", content).append(li(s"$a - $b = ${a - b}").render)
     })
     callbacks.add((t: (Int, Int)) => {
       val (a, b) = t
-      jQ("#mul").append(li(s"$a * $b = ${a*b}").render)
+      jQ("#mul", content).append(li(s"$a * $b = ${a * b}").render)
     })
     callbacks.add((t: (Int, Int)) => {
       val (a, b) = t
-      jQ("#div").append(li(s"$a / $b = ${a/b}").render)
+      jQ("#div", content).append(li(s"$a / $b = ${a / b}").render)
     })
 
     callbacks.fire((1, 1))

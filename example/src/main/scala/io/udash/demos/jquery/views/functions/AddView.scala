@@ -9,16 +9,16 @@ object AddView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(cls := "addview")(
     h3(".add() & .css()"),
     tags2.style(
-      """.demo div {
+      """.addview div {
         |  width: 60px;
         |  height: 60px;
         |  margin: 10px;
         |  float: left;
         |}
-        |.demo p {
+        |.addview p {
         |  clear: left;
         |  font-weight: bold;
         |  font-size: 16px;
@@ -34,11 +34,11 @@ object AddView extends FunctionView {
     div(),
     div(),
     p("Added this... (notice no border)")
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo div").css("border", "2px solid red")
-      .add(".demo p")
+    jQ("div", content).css("border", "2px solid red")
+      .add("p", content)
       .css("background", "yellow")
   }
 }

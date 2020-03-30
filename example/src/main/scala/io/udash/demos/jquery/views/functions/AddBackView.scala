@@ -9,25 +9,15 @@ object AddBackView extends FunctionView {
 
   import scalatags.JsDom.all._
 
-  override protected def content = div(cls := "demo")(
+  override protected val content = div(cls := "addback")(
     h3(".addBack() & .addClass()"),
     tags2.style(
-      """.demo p, .demo div {
-        |  margin: 5px;
-        |  padding: 5px;
-        |}
-        |.border {
+      """
+        |.addback .border {
         |  border: 2px solid red;
         |}
-        |.background {
+        |.addback .background {
         |  background: yellow;
-        |}
-        |.left, .right {
-        |  width: 45%;
-        |  float: left;
-        |}
-        |.right {
-        |  margin-left: 3%;
         |}""".stripMargin
     ),
     div(cls := "left")(
@@ -44,15 +34,15 @@ object AddBackView extends FunctionView {
         p("Second Paragraph")
       )
     )
-  )
+  ).render
 
   override protected def script = () => {
-    jQ(".demo div.left, .demo div.right").find("div, div > p").addClass("border")
+    jQ("div.left, div.right", content).find("div, div > p").addClass("border")
 
     // First Example
-    jQ(".demo div.before-addback").find("p").addClass("background")
+    jQ("div.before-addback", content).find("p").addClass("background")
 
     // Second Example
-    jQ(".demo div.after-addback").find("p").addBack().addClass("background")
+    jQ("div.after-addback", content).find("p").addBack().addClass("background")
   }
 }
