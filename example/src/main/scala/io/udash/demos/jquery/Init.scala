@@ -1,5 +1,6 @@
 package io.udash.demos.jquery
 
+import io.udash.demos.jquery.views.IndexView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom
 import org.scalajs.dom.Element
@@ -15,6 +16,7 @@ object Init {
       if (appRoot.isEmpty) {
         dom.console.error("Application root element not found! Check you index.html file!")
       } else {
+        appRoot.get.appendChild(IndexView.content.render)
         //applicationInstance.run(appRoot.get)
       }
     })

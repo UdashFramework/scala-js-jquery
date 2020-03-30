@@ -24,7 +24,7 @@ object IndexView {
   )
 
   final val content = div(
-    "Take a look at following demo pages:",
-    demos.map(_.getTemplate),
+    "Take a look at following demos:",
+    demos.map(demo => div(demo.getTemplate)),
   )
 }
