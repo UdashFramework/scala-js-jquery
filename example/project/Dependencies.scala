@@ -1,17 +1,12 @@
 import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 
 object Dependencies {
   val scalatagsVersion = "0.8.6"
-  val udashJQueryVersion = "3.0.2"
+  val udashJQueryVersion = "3.0.0-SNAPSHOT"
 
   val deps = Def.setting(Seq[ModuleID](
     "com.lihaoyi" %%% "scalatags" % scalatagsVersion,
     "io.udash" %%% "udash-jquery" % udashJQueryVersion
-  ))
-
-  val jsDeps = Def.setting(Seq[org.scalajs.sbtplugin.JSModuleID](
-    "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
   ))
 }

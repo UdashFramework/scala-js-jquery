@@ -1,13 +1,13 @@
 name := "jquery-demo"
 
 inThisBuild(Seq(
-  version := "3.0.2",
+  version := "3.0.0-SNAPSHOT",
   organization := "io.udash",
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.12.10",
-  crossScalaVersions := Seq("2.12.10"), //todo 2.13 & SJS 1.0 with Udash 0.9
+  scalaVersion := "2.12.11",
+  crossScalaVersions := Seq("2.13.1"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -34,17 +34,17 @@ val copyAssets = taskKey[Unit]("Copies all assets to the target directory.")
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(commonSettings)
+  .aggregate(`jquery-bundler-demo`, `jquery-global-demo`)
 
 lazy val `jquery-global-demo` = project.in(file("global-demo"))
-  .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSPlugin, JSDependenciesPlugin)
   .settings(
     commonSettings,
 
-    jsDependencies ++= Dependencies.jsDeps.value,
-
     sourceDirsSettings(_.getParentFile),
 
-    /* move these files out of target/. */
+    cleanFiles += generatedGlobalDir,
+
     Compile / fullOptJS / crossTarget := generatedGlobalDir,
     Compile / fastOptJS / crossTarget := generatedGlobalDir,
     Compile / packageJSDependencies / crossTarget := generatedGlobalDir,
@@ -90,6 +90,8 @@ lazy val `jquery-bundler-demo` = project.in(file("bundler-demo"))
         generatedBundlerDir / "index.html"
       )
     },
+
+    cleanFiles += generatedBundlerDir,
 
     compileStatics := {
       val sjsFileName = (Compile / fastOptJS).value.data.name.stripSuffix(".js")
