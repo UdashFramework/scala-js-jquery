@@ -9,7 +9,7 @@ jobs:
     - stage: test
       script:
         - sbt +test +publishLocal
-        - cd example && sbt compileStatics
+        - cd example && sbt +compileStatics
     - stage: release
       if: tag =~ ^v
       script:

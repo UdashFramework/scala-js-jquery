@@ -10,7 +10,7 @@ Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) program
 Add the following dependency to your SBT build:
 
 ```scala
-libraryDependencies += "io.udash" %%% "udash-jquery" % "3.0.2"
+libraryDependencies += "io.udash" %%% "udash-jquery" % "3.0.4"
 ```
 
 then import the jQuery package: 
@@ -19,21 +19,9 @@ then import the jQuery package:
 import io.udash.wrappers.jquery._
 ```
 
-Since version `3.0.0` the wrapper is published as a CommonJS module with JS dependencies managed 
-by [scalajs-bundler](https://github.com/scalacenter/scalajs-bundler). 
-
-If you do not want to use the bundler, you have to include jQuery sources manually by:
- * explicit link in your `index.html`.
- ```html
- <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
-         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
-         crossorigin="anonymous"></script>
- ```
- * or a [Scala.js dependency](http://www.scala-js.org/doc/project/dependencies.html).
- ```scala
- jsDependencies +=
-   "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js" minified "3.3.1/jquery.min.js"
- ```
+Since version `3.0.4` the wrapper targets SJS 1.x series and supports JS dependencies managed by
+by [scalajs-bundler](https://github.com/scalacenter/scalajs-bundler) or [sbt-jsdependencies
+](https://github.com/scala-js/jsdependencies)
  
 
 ## Examples

@@ -1,22 +1,19 @@
 package io.udash.demos.jquery.views.functions
 
-import io.udash._
-import io.udash.demos.jquery.IndexState
 import io.udash.demos.jquery.views.FunctionView
 import io.udash.wrappers.jquery._
 import org.scalajs.dom.Event
 
 import scala.scalajs.js
 
-object DeferredViewPresenter extends StaticViewFactory[IndexState.type](() => new DeferredView)
-
 /** Based on examples from: <a href="http://api.jquery.com/deferred/">jQuery Docs</a>. */
-class DeferredView extends FunctionView {
+object DeferredView extends FunctionView {
+
   import scalatags.JsDom.all._
 
   var deferred: JQueryDeferred[js.Function1[Int, js.Any], Int] = null
 
-  override protected val content = div(cls := "demo")(
+  override protected val content = div(
     h3("Deferred"),
     div(
       div(id := "deferred")("???"),
@@ -44,12 +41,12 @@ class DeferredView extends FunctionView {
     )
   ).render
 
-  override protected val script = () => {
-    jQ(".demo button").prop("disabled", "")
+  override protected def script = () => {
+    jQ("button", content).prop("disabled", "")
     deferred = jQ.deferred[js.Function1[Int, js.Any], Int]()
-    jQ("#deferred").text(s"Waiting...")
-    deferred.done((i: Int) => jQ("#deferred").text(s"Done: $i"))
-    deferred.fail((i: Int) => jQ("#deferred").text(s"Fail: $i"))
-    deferred.progress((i: Int) => jQ("#deferred").text(s"Progress: $i"))
+    jQ("#deferred", content).text(s"Waiting...")
+    deferred.done((i: Int) => jQ("#deferred", content).text(s"Done: $i"))
+    deferred.fail((i: Int) => jQ("#deferred", content).text(s"Fail: $i"))
+    deferred.progress((i: Int) => jQ("#deferred", content).text(s"Progress: $i"))
   }
 }
