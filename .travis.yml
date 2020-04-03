@@ -7,6 +7,7 @@ scala:
 jobs:
   include:
     - stage: test
+      if: !(tag =~ ^v)
       script:
         - sbt +test +publishLocal
         - cd example && sbt +compileStatics
