@@ -63,8 +63,9 @@ val commonSettings = Seq(
 )
 
 val commonJSSettings = Seq(
-  Test / parallelExecution := false,
   Test / scalaJSStage := FastOptStage,
+  Test / requireJsDomEnv := true,
+  npmExtraArgs += "--silent",
   scalacOptions += {
     val localDir = (ThisBuild / baseDirectory).value.toURI.toString
     val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
@@ -84,7 +85,6 @@ lazy val root = project.in(file("."))
       "com.lihaoyi" %%% "scalatags" % "0.8.6" % Test
     ),
 
-    Compile / npmDependencies += "jquery" -> "3.3.1",
-    jsDependencies += "org.webjars" % "jquery" % "3.3.1" / "3.3.1/jquery.js",
-    Test / requireJsDomEnv := true
+    Compile / npmDependencies += "jquery" -> "3.4.1",
+    jsDependencies += "org.webjars" % "jquery" % "3.4.1" / "3.4.1/jquery.js",
   )
