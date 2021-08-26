@@ -1,6 +1,6 @@
 # udash-jquery [<img align="right" height="50px" src="https://avsystem.github.io/Anjay-doc/_images/avsystem_logo.png">](http://www.avsystem.com/)
-[![Build Status](https://travis-ci.org/UdashFramework/scala-js-jquery.svg?branch=master)](https://travis-ci.org/UdashFramework/scala-js-jquery)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.udash/udash-jquery_sjs1_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.udash/udash-jquery_sjs1_2.12)
+![Build Status](https://github.com/UdashFramework/scala-js-jquery.svg/workflows/CI/badge.svg?branch=master&event=push)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.udash/udash-jquery_sjs1_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.udash/udash-jquery_sjs1_2.13)
 [![Join the chat at https://gitter.im/UdashFramework/scala-js-jquery](https://badges.gitter.im/UdashFramework/scala-js-jquery.svg)](https://gitter.im/UdashFramework/scala-js-jquery?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Static types for the jQuery API for [Scala.js](http://www.scala-js.org/) programs. 
