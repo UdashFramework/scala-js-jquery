@@ -7,8 +7,8 @@ inThisBuild(Seq(
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.13.1",
-  crossScalaVersions := Seq("2.12.11", "2.13.1"),
+  scalaVersion := "2.13.6",
+  crossScalaVersions := Seq("2.13.6", "2.12.14"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -19,15 +19,14 @@ val commonSettings = Seq(
     "-language:postfixOps",
     "-language:experimental.macros",
     "-Xfatal-warnings",
-    "-Xlint:_",
-    "-Ywarn-unused:_,-explicits,-implicits",
-    "-Ybackend-parallelism", "4",
+    "-Xlint:_,-missing-interpolator,-unused",
+    "-Yrangepos",
+    "-Ybackend-parallelism", "8",
     "-Ycache-plugin-class-loader:last-modified",
     "-Ycache-macro-class-loader:last-modified",
   ),
   autoAPIMappings := true,
   publishMavenStyle := true,
-  publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
 
   publishTo := sonatypePublishToBundle.value,
@@ -80,9 +79,9 @@ lazy val root = project.in(file("."))
     commonJSSettings,
 
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "0.9.8",
-      "org.scalatest" %%% "scalatest" % "3.1.1" % Test,
-      "com.lihaoyi" %%% "scalatags" % "0.8.6" % Test
+      "org.scala-js" %%% "scalajs-dom" % "1.2.0",
+      "org.scalatest" %%% "scalatest" % "3.2.9" % Test,
+      "com.lihaoyi" %%% "scalatags" % "0.9.4" % Test
     ),
 
     Compile / npmDependencies += "jquery" -> "3.4.1",
