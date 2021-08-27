@@ -84,7 +84,7 @@ buildNumber.properties
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
+out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -117,6 +117,7 @@ hs_err_pid*
 .cache
 .history
 .lib/
+.bsp/
 dist/*
 target/
 lib_managed/

@@ -1,14 +1,13 @@
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := sys.env.get("TRAVIS_TAG").filter(_.startsWith("v")).map(_.drop(1)).getOrElse("3.0.0-SNAPSHOT"),
+  version := "3.1.0-SNAPSHOT",
   organization := "io.udash",
-  cancelable := true,
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.13.1",
-  crossScalaVersions := Seq("2.12.11", "2.13.1"),
+  scalaVersion := "2.13.6",
+  crossScalaVersions := Seq("2.13.6", "2.12.14"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -16,18 +15,29 @@ val commonSettings = Seq(
     "-language:implicitConversions",
     "-language:existentials",
     "-language:dynamics",
-    "-language:postfixOps",
     "-language:experimental.macros",
     "-Xfatal-warnings",
     "-Xlint:_",
-    "-Ywarn-unused:_,-explicits,-implicits",
-    "-Ybackend-parallelism", "4",
+    "-Ybackend-parallelism", "8",
     "-Ycache-plugin-class-loader:last-modified",
     "-Ycache-macro-class-loader:last-modified",
   ),
-  autoAPIMappings := true,
+)
+
+val commonJSSettings = Seq(
+  Test / scalaJSStage := FastOptStage,
+  Test / requireJsDomEnv := true,
+  npmExtraArgs += "--silent",
+  scalacOptions += {
+    val localDir = (ThisBuild / baseDirectory).value.toURI.toString
+    val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
+    s"-P:scalajs:mapSourceURI:$localDir->$githubDir/v${version.value}/"
+  },
+)
+
+val deploymentConfiguration = Seq(
   publishMavenStyle := true,
-  publishArtifact in Test := false,
+  Test / publishArtifact := false,
   pomIncludeRepository := { _ => false },
 
   publishTo := sonatypePublishToBundle.value,
@@ -62,27 +72,17 @@ val commonSettings = Seq(
   }
 )
 
-val commonJSSettings = Seq(
-  Test / scalaJSStage := FastOptStage,
-  Test / requireJsDomEnv := true,
-  npmExtraArgs += "--silent",
-  scalacOptions += {
-    val localDir = (ThisBuild / baseDirectory).value.toURI.toString
-    val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
-    s"-P:scalajs:mapSourceURI:$localDir->$githubDir/v${version.value}/"
-  },
-)
-
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSBundlerPlugin, JSDependenciesPlugin)
   .settings(
     commonSettings,
     commonJSSettings,
+    deploymentConfiguration,
 
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "0.9.8",
-      "org.scalatest" %%% "scalatest" % "3.1.1" % Test,
-      "com.lihaoyi" %%% "scalatags" % "0.8.6" % Test
+      "org.scala-js" %%% "scalajs-dom" % "1.2.0",
+      "org.scalatest" %%% "scalatest" % "3.2.9" % Test,
+      "com.lihaoyi" %%% "scalatags" % "0.9.4" % Test
     ),
 
     Compile / npmDependencies += "jquery" -> "3.4.1",
