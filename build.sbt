@@ -86,5 +86,5 @@ lazy val root = project.in(file("."))
     ),
 
     Compile / npmDependencies += "jquery" -> "3.4.1",
-    jsDependencies += "org.webjars" % "jquery" % "3.4.1" / "3.4.1/jquery.js",
+    jsDependencies += "org.webjars" % "jquery" % "3.4.1" / "3.4.1/jquery.js" minified s"3.4.1/jquery.min.js",
   )
