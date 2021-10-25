@@ -7,7 +7,7 @@ inThisBuild(Seq(
 
 val commonSettings = Seq(
   scalaVersion := "2.13.6",
-  crossScalaVersions := Seq("2.13.6", "2.12.14"),
+  crossScalaVersions := Seq("2.13.6", "2.12.15"),
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -80,9 +80,9 @@ lazy val root = project.in(file("."))
     deploymentConfiguration,
 
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "1.2.0",
+      "org.scala-js" %%% "scalajs-dom" % "2.0.0",
       "org.scalatest" %%% "scalatest" % "3.2.9" % Test,
-      "com.lihaoyi" %%% "scalatags" % "0.9.4" % Test
+      "com.lihaoyi" %%% "scalatags" % "0.10.0" % Test
     ),
 
     Compile / npmDependencies += "jquery" -> "3.4.1",
