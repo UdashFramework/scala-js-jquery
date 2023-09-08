@@ -85,6 +85,6 @@ lazy val root = project.in(file("."))
       "com.lihaoyi" %%% "scalatags" % "0.10.0" % Test
     ),
 
-    Compile / npmDependencies += "jquery" -> "3.4.1",
-    jsDependencies += "org.webjars" % "jquery" % "3.4.1" / "3.4.1/jquery.js" minified s"3.4.1/jquery.min.js",
+    Compile / npmDependencies += "jquery" -> "3.6.4",
+    jsDependencies += "org.webjars" % "jquery" % "3.6.4" / "3.6.4/jquery.js" minified s"3.6.4/jquery.min.js",
   )
