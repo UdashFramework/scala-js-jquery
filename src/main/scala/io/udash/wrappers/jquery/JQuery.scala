@@ -164,6 +164,10 @@ trait JQuery extends js.Object {
   @JSName("eq")
   def at(index: Int): JQuery = js.native
 
+  /** Reduce the set of matched elements to the even ones in the set, numbered from zero. <br/>
+   * See: <a href="http://api.jquery.com/even/">jQuery Docs</a> */
+  def even(): JQuery = js.native
+
   /** Display the matched elements by fading them to opaque. <br/>
     * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
   def fadeIn(duration: Int = js.native, easing: EasingFunction = js.native): JQuery = js.native
@@ -380,6 +384,10 @@ trait JQuery extends js.Object {
   /** Remove elements from the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/not/">jQuery Docs</a> */
   def not(el: Element*): JQuery = js.native
+
+  /** Reduce the set of matched elements to the odd ones in the set, numbered from zero. <br/>
+   * See: <a href="http://api.jquery.com/odd/">jQuery Docs</a> */
+  def odd(): JQuery = js.native
 
   /** Remove an event handler. <br/>
     * See: <a href="http://api.jquery.com/off/">jQuery Docs</a> */
