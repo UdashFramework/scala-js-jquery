@@ -22,6 +22,7 @@ val commonSettings = Seq(
     "-Ycache-plugin-class-loader:last-modified",
     "-Ycache-macro-class-loader:last-modified",
   ),
+  webpack / version := "5.75.0"
 )
 
 val commonJSSettings = Seq(
