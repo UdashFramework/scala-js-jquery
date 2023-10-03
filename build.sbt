@@ -22,7 +22,6 @@ val commonSettings = Seq(
     "-Ycache-plugin-class-loader:last-modified",
     "-Ycache-macro-class-loader:last-modified",
   ),
-  webpack / version := "5.75.0"
 )
 
 val commonJSSettings = Seq(
@@ -34,6 +33,7 @@ val commonJSSettings = Seq(
     val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
     s"-P:scalajs:mapSourceURI:$localDir->$githubDir/v${version.value}/"
   },
+  webpack / version := "5.75.0", // TODO: can be removed when sbt-scalajs-bundler > 0.21.1
 )
 
 val deploymentConfiguration = Seq(
