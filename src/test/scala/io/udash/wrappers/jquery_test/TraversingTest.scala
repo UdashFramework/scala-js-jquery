@@ -1,7 +1,11 @@
 package io.udash.wrappers.jquery_test
 
+import org.scalajs.dom.HTMLSpanElement
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
+
+import scala.scalajs.js
+import scala.scalajs.js.Object.entries
 
 class TraversingTest extends AnyWordSpec with Matchers {
 
@@ -165,6 +169,30 @@ class TraversingTest extends AnyWordSpec with Matchers {
       root.children(".start").last().text() should be("c")
       root.children("a").first().length should be(0)
       root.children("a").last().length should be(0)
+    }
+
+    "even/odd matching element" in {
+      val dom = div(
+        span("0"),
+        span("1"),
+        span("2"),
+        span("3"),
+        span("4"),
+        span("5"),
+      ).render
+
+      val root = jQ(dom)
+      val evens = root.children("span").even()
+      val odds = root.children("span").odd()
+
+      entries(evens).collect {
+        case js.Tuple2(_: String, x: HTMLSpanElement) => x.textContent
+      }.toSeq shouldBe Seq("0", "2", "4")
+
+      entries(odds).collect {
+        case js.Tuple2(_: String, x: HTMLSpanElement) => x.textContent
+      }.toSeq shouldBe Seq("1", "3", "5")
+
     }
   }
 }
