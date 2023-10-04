@@ -4,9 +4,6 @@ import org.scalajs.dom.HTMLSpanElement
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-import scala.scalajs.js
-import scala.scalajs.js.Object.entries
-
 class TraversingTest extends AnyWordSpec with Matchers {
 
   import io.udash.wrappers.jquery._
@@ -182,17 +179,9 @@ class TraversingTest extends AnyWordSpec with Matchers {
       ).render
 
       val root = jQ(dom)
-      val evens = root.children("span").even()
-      val odds = root.children("span").odd()
-
-      entries(evens).collect {
-        case js.Tuple2(_: String, x: HTMLSpanElement) => x.textContent
-      }.toSeq shouldBe Seq("0", "2", "4")
-
-      entries(odds).collect {
-        case js.Tuple2(_: String, x: HTMLSpanElement) => x.textContent
-      }.toSeq shouldBe Seq("1", "3", "5")
-
+      root.children("span").even().text() shouldBe "024"
+      root.children("span").odd().text() shouldBe "135"
     }
+
   }
 }
