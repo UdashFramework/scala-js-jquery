@@ -166,5 +166,21 @@ class TraversingTest extends AnyWordSpec with Matchers {
       root.children("a").first().length should be(0)
       root.children("a").last().length should be(0)
     }
+
+    "even/odd matching element" in {
+      val dom = div(
+        span("0"),
+        span("1"),
+        span("2"),
+        span("3"),
+        span("4"),
+        span("5"),
+      ).render
+
+      val root = jQ(dom)
+      root.children("span").even().text() shouldBe "024"
+      root.children("span").odd().text() shouldBe "135"
+    }
+
   }
 }
