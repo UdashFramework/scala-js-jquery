@@ -1,6 +1,5 @@
 package io.udash.wrappers.jquery_test
 
-import org.scalajs.dom.HTMLSpanElement
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
