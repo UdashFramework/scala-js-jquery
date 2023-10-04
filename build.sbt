@@ -6,8 +6,7 @@ inThisBuild(Seq(
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.13.6",
-  crossScalaVersions := Seq("2.13.6", "2.12.15"),
+  scalaVersion := "2.13.12",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
