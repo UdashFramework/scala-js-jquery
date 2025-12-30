@@ -1,7 +1,6 @@
 name := "udash-jquery"
 
 inThisBuild(Seq(
-  version := "3.3.0-SNAPSHOT",
   scalaVersion := "2.13.18",
   organization := "io.udash",
   homepage := Some(url("https://udash.io")),
