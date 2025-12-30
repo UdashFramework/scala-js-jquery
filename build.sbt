@@ -57,7 +57,7 @@ val commonJSSettings = Seq(
     val githubDir = "https://raw.githubusercontent.com/UdashFramework/scala-js-jquery"
     s"-P:scalajs:mapSourceURI:$localDir->$githubDir/v${version.value}/"
   },
-  webpack / version := "5.75.0", // TODO: can be removed when sbt-scalajs-bundler > 0.21.1
+  webpack / version := "5.104.1", // TODO: can be removed when sbt-scalajs-bundler > 0.21.1
 )
 
 lazy val root = project.in(file("."))
