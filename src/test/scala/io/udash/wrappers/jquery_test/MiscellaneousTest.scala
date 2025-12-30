@@ -17,7 +17,7 @@ class MiscellaneousTest extends AnyWordSpec with Matchers {
 
       val dom = div().render
       val selection = jQ(dom)
-      selection.data(Map("key" -> "value", "int" -> 1, "cls" -> c, "func" -> f))
+      selection.data(Map[String, Any]("key" -> "value", "int" -> 1, "cls" -> c, "func" -> f))
 
       selection.data().key should be("value")
       selection.data("key") should be(Some("value"))
