@@ -2,11 +2,36 @@ name := "udash-jquery"
 
 inThisBuild(Seq(
   version := "3.3.0-SNAPSHOT",
+  scalaVersion := "2.13.18",
   organization := "io.udash",
+  homepage := Some(url("https://udash.io")),
+  licenses := Seq(License.Apache2),
+  scmInfo := Some(ScmInfo(
+    browseUrl = url("https://github.com/UdashFramework/scala-js-jquery"),
+    connection = "scm:git:git@github.com:UdashFramework/scala-js-jquery.git",
+    devConnection = Some("scm:git:git@github.com:UdashFramework/scala-js-jquery.git"),
+  )),
+  developers := List(
+    Developer("ddworak", "Dawid Dworak", "d.dworak@avsystem.com", url("https://github.com/ddworak")),
+  ),
+  githubWorkflowTargetTags ++= Seq("v*"),
+  githubWorkflowArtifactUpload := false,
+  githubWorkflowJavaVersions := Seq(JavaSpec.temurin("17"), JavaSpec.temurin("21"), JavaSpec.temurin("25")),
+  githubWorkflowPublishTargetBranches := Seq(RefPredicate.StartsWith(Ref.Tag("v"))),
+  githubWorkflowEnv += "JAVA_OPTS" -> "-Dfile.encoding=UTF-8 -Xmx4G",
+  githubWorkflowBuildMatrixFailFast := Some(false),
+  githubWorkflowPublish := Seq(WorkflowStep.Sbt(
+    List("ci-release"),
+    env = Map(
+      "PGP_PASSPHRASE" -> "${{ secrets.PGP_PASSPHRASE }}",
+      "PGP_SECRET" -> "${{ secrets.PGP_SECRET }}",
+      "SONATYPE_PASSWORD" -> "${{ secrets.SONATYPE_PASSWORD }}",
+      "SONATYPE_USERNAME" -> "${{ secrets.SONATYPE_USERNAME }}"
+    )
+  )),
 ))
 
 val commonSettings = Seq(
-  scalaVersion := "2.13.18",
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
@@ -35,49 +60,11 @@ val commonJSSettings = Seq(
   webpack / version := "5.75.0", // TODO: can be removed when sbt-scalajs-bundler > 0.21.1
 )
 
-val deploymentConfiguration = Seq(
-  publishMavenStyle := true,
-  Test / publishArtifact := false,
-  pomIncludeRepository := { _ => false },
-
-  publishTo := sonatypePublishToBundle.value,
-
-  credentials in Global += Credentials(
-    "Sonatype Nexus Repository Manager",
-    "oss.sonatype.org",
-    sys.env.getOrElse("SONATYPE_USERNAME", ""),
-    sys.env.getOrElse("SONATYPE_PASSWORD", "")
-  ),
-
-  pomExtra := {
-    <url>https://github.com/UdashFramework/scala-js-jquery</url>
-      <licenses>
-        <license>
-          <name>Apache v.2 License</name>
-          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-          <distribution>repo</distribution>
-        </license>
-      </licenses>
-      <scm>
-        <url>git@github.com:UdashFramework/scala-js-jquery.git</url>
-        <connection>scm:git@github.com:UdashFramework/scala-js-jquery.git</connection>
-      </scm>
-      <developers>
-        <developer>
-          <id>avsystem</id>
-          <name>AVSystem</name>
-          <url>http://www.avsystem.com/</url>
-        </developer>
-      </developers>
-  }
-)
-
 lazy val root = project.in(file("."))
   .enablePlugins(ScalaJSBundlerPlugin, JSDependenciesPlugin)
   .settings(
     commonSettings,
     commonJSSettings,
-    deploymentConfiguration,
 
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "2.8.1",
