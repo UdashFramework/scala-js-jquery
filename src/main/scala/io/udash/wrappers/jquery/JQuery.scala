@@ -497,19 +497,19 @@ trait JQuery extends js.Object {
 
   /** Get the current horizontal position of the scroll bar for the first element in the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/scrollLeft/">jQuery Docs</a> */
-  def scrollLeft(): Int = js.native
+  def scrollLeft(): Double = js.native
 
   /** Set the current horizontal position of the scroll bar for each of the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/scrollLeft/">jQuery Docs</a> */
-  def scrollLeft(left: Int): JQuery = js.native
+  def scrollLeft(left: Double): JQuery = js.native
 
   /** Get the current vertical position of the scroll bar for the first element in the set of matched elements or set the vertical position of the scroll bar for every matched element. <br/>
     * See: <a href="http://api.jquery.com/scrollTop/">jQuery Docs</a> */
-  def scrollTop(): Int = js.native
+  def scrollTop(): Double = js.native
 
   /** Set the current vertical position of the scroll bar for each of the set of matched elements. <br/>
     * See: <a href="http://api.jquery.com/scrollTop/">jQuery Docs</a> */
-  def scrollTop(top: Int): JQuery = js.native
+  def scrollTop(top: Double): JQuery = js.native
 
   /** Trigger select event on an element. <br/>
     * See: <a href="http://api.jquery.com/select/">jQuery Docs</a> */

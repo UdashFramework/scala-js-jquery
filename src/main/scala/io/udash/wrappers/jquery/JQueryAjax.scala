@@ -136,7 +136,7 @@ object JQueryAjaxSettings {
   def apply(accepts: js.Any = null, async: Option[Boolean] = None, beforeSend: (JQueryXHR, JQueryAjaxSettings) => js.Any = null,
             cache: Option[Boolean] = None, complete: (JQueryXHR, String) => js.Any = null, contents: js.Any = null, contentType: js.Any = null,
             context: js.Any = null, converters: js.Any = null, crossDomain: Option[Boolean] = None, data: js.Any = null, dataFilter: (js.Any, js.Any) => js.Any = null,
-            dataType: String = null, error: (JQueryXHR, String) => js.Any = null, global: Option[Boolean] = None, headers: js.Any = null, 
+            dataType: String = null, error: (JQueryXHR, String, String) => js.Any = null, global: Option[Boolean] = None, headers: js.Any = null,
             ifModified: Option[Boolean] = None, isLocal: Option[Boolean] = None, jsonp: String = null, jsonpCallback: js.Any = null, method: String = null, 
             mimeType: String = null, password: String = null, processData: Option[Boolean] = None, scriptCharset: String = null, statusCode: js.Any = null, 
             success: (js.Any, String, JQueryXHR) => js.Any = null, timeout: Option[Double] = None, traditional: Option[Boolean] = None, `type`: String = null,
